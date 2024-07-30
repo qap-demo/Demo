@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mock API",
+    "description": "API Agritec reúne informações úteis para o gerenciamento da produção de culturas agrícolas. Contempla a oferta de dados e modelos sobre: (i) época ideal de plantio para dezenas de culturas, com base no zoneamento agrícola de risco climático; (ii) relação de cultivares mais aptas, para 12 culturas (Arroz, Algodão, Amendoim, Cevada, Feijão, Feijão Caupi, Girassol, Mamona, Milho, Soja, Sorgo e Trigo) diferentes; (iii) indicação de adubação e correção de solo conforme resultado prévio de análise de solo, previsão de produtividade e condições climáticas antes e durante a safra para cinco culturas (Arroz, Feijão, Milho, Soja e Trigo).",
+    "version": "0.1.9"
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/mockapi/billings": {
+      "get": {
+        "summary": "Endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "requestBodies": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
