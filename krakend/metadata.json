@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Demo V1",
+    "description": "Deploy workspace DemoV1",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
