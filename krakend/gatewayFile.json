@@ -1,0 +1,76 @@
+{
+  "version": 3,
+  "name": "Mock API",
+  "timeout": "30000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "port": 3890,
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/etc/krakend/plugins/"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/mockapi/billings",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "Billings",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET"
+          ],
+          "expose_headers": [
+            "*"
+          ],
+          "allow_headers": [
+            "*"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/api/billing/charge",
+          "encoding": "json",
+          "sd": "static",
+          "cache_ttl": "",
+          "disable_host_sanitize": ""
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/billing/charge",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://6616e44ced6b8fa43481954f.mockapi.io"
+          ]
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "plugin/http-server": {
+      "name": [
+        "krakend-server-billing"
+      ],
+      "krakend-server-billing": {
+        "endpoint_checker": "http://qap-demo.qriarlabs.cloud:8091/check",
+        "endpoint_charge": "http://qap-demo.qriarlabs.cloud:8092/charge"
+      }
+    }
+  }
+}
