@@ -1,0 +1,872 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": " API SATVeg MODIS",
+    "description": "A API SATVeg MODIS é derivada do Sistema de Análise Temporal da Vegetação (SATVeg), uma ferramenta web desenvolvida pela Embrapa Informática Agropecuária, destinada à geração e visualização de perfis temporais dos índices vegetativos NDVI e EVI para o Brasil e toda a América do Sul, com o objetivo de apoiar atividades de gestão territorial e monitoramento agrícola e ambiental. Os índices vegetativos são gerados a partir de imagens multiespectrais fornecidas pelo sensor MODIS, a bordo dos satélites Terra e Aqua, da Nasa, contemplando dados produzidos a partir de 2000 até a última data então disponibilizada por seu repositório oficial, com resolução temporal de 16 dias e resolução espacial de 250 metros.",
+    "version": "v2"
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Série temporal",
+      "description": "Retorna série temporal EVI ou NDVI de acordo com os filtros"
+    },
+    {
+      "name": "Health",
+      "description": "Status de funcionamento da API"
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": " API SATVeg MODIS",
+      "description": "A API SATVeg MODIS é derivada do Sistema de Análise Temporal da Vegetação (SATVeg), uma ferramenta web desenvolvida pela Embrapa Informática Agropecuária, destinada à geração e visualização de perfis temporais dos índices vegetativos NDVI e EVI para o Brasil e toda a América do Sul, com o objetivo de apoiar atividades de gestão territorial e monitoramento agrícola e ambiental. Os índices vegetativos são gerados a partir de imagens multiespectrais fornecidas pelo sensor MODIS, a bordo dos satélites Terra e Aqua, da Nasa, contemplando dados produzidos a partir de 2000 até a última data então disponibilizada por seu repositório oficial, com resolução temporal de 16 dias e resolução espacial de 250 metros.",
+      "version": "v2"
+    },
+    "servers": [
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Internal test server"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Série temporal",
+        "description": "Retorna série temporal EVI ou NDVI de acordo com os filtros"
+      },
+      {
+        "name": "Health",
+        "description": "Status de funcionamento da API"
+      }
+    ],
+    "paths": {
+      "/satveg/billings": {
+        "get": {
+          "summary": "Endpoint",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/satveg/seriespoligono": {
+        "post": {
+          "tags": [
+            "Série temporal"
+          ],
+          "summary": "Retorna uma série temporal EVI ou NDVI a partir de polígono (conjunto de coordenadas geográficas)",
+          "description": "Retorna uma lista de valores que representa a série temporal média EVI ou NDVI de um polígono com as respectivas datas.",
+          "operationId": "getSeries",
+          "requestBody": {
+            "description": "Representação dos valores de filtro possíveis para a busca de uma série temporal",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SerieFilterPoligono"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Retorna a série temporal para o polígono de acordo com os valores de filtro informados",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SeriePoligono"
+                  },
+                  "example": {
+                    "listaSerie": [
+                      0.5856,
+                      0.5872,
+                      0.5726,
+                      0.5473,
+                      0.4984,
+                      0.4366,
+                      0.367,
+                      0.303,
+                      0.2488,
+                      0.2255
+                    ],
+                    "listaDatas": [
+                      "2000-02-18",
+                      "2000-03-05",
+                      "2000-03-21",
+                      "2000-04-06",
+                      "2000-04-22",
+                      "2000-05-08",
+                      "2000-05-24",
+                      "2000-06-09",
+                      "2000-06-25",
+                      "2000-07-11"
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição não pode ser processada por motivo de validação de atributos.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "status": 500,
+                    "timestamp": "2022-05-24T02:20:56.196184789Z",
+                    "type": "erro-de-sistema",
+                    "title": "Erro de sistema",
+                    "detail": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                    "userMessage": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                  }
+                }
+              }
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited",
+          "parameters": []
+        }
+      },
+      "/satveg/series": {
+        "post": {
+          "tags": [
+            "Série temporal"
+          ],
+          "summary": "Retorna uma série temporal EVI ou NDVI a partir de uma coordenada geográfica (longitude e latitude)",
+          "description": "Retorna uma lista de valores que representa a série temporal EVI ou NDVI de um ponto com as respectivas datas das imagens dos satélites ordenadas em ordem crescente de data.",
+          "operationId": "getSeries_1",
+          "requestBody": {
+            "description": "Representação dos valores de filtro possíveis para a busca de uma série temporal",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SerieFilterPonto"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Retorna a série contendo a lista de valores EVI ou NDVI e a lista de datas de acordo com os parâmetros.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Serie"
+                  },
+                  "example": {
+                    "listaSerie": [
+                      0.2474,
+                      0.2846,
+                      0.3134,
+                      0.3305,
+                      0.3308,
+                      0.3205,
+                      0.297,
+                      0.2628,
+                      0.2162,
+                      0.2298
+                    ],
+                    "listaDatas": [
+                      "2000-02-18",
+                      "2000-03-05",
+                      "2000-03-21",
+                      "2000-04-06",
+                      "2000-04-22",
+                      "2000-05-08",
+                      "2000-05-24",
+                      "2000-06-09",
+                      "2000-06-25",
+                      "2000-07-11"
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição não pode ser processada por motivo de validação de atributos.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "status": 500,
+                    "timestamp": "2022-05-24T02:20:56.196184789Z",
+                    "type": "erro-de-sistema",
+                    "title": "Erro de sistema",
+                    "detail": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                    "userMessage": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                  }
+                }
+              }
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited",
+          "parameters": []
+        }
+      },
+      "/satveg/health": {
+        "get": {
+          "tags": [
+            "Health"
+          ],
+          "summary": "Retorna o status de funcionamento da API",
+          "description": "Usado para verificar qual o status de funcionamento da API",
+          "operationId": "getHealth",
+          "responses": {
+            "204": {
+              "description": "Resposta sem conteúdo, apenas para verificar o funcionamento da API."
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": {
+                    "status": 500,
+                    "timestamp": "2022-05-24T02:20:56.196184789Z",
+                    "type": "erro-de-sistema",
+                    "title": "Erro de sistema",
+                    "detail": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                    "userMessage": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                  }
+                }
+              }
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited",
+          "parameters": []
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "ErrorField": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string",
+              "description": "Atributo/Campo com erro",
+              "example": "tipoPerfil"
+            },
+            "user_message": {
+              "type": "string",
+              "description": "Mensagem de erro sugerida para o usuário",
+              "example": "tipoPerfil é obrigatório"
+            }
+          },
+          "description": "Lista opcional de atributo(s)/campo(s) com erro"
+        },
+        "Error": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "integer",
+              "description": "Código de status do erro",
+              "format": "int32",
+              "example": 400
+            },
+            "timestamp": {
+              "type": "string",
+              "description": "Data e hora do erro",
+              "format": "date-time"
+            },
+            "type": {
+              "type": "string",
+              "description": "Tipo do erro",
+              "example": "dados-invalidos"
+            },
+            "title": {
+              "type": "string",
+              "description": "Título do erro",
+              "example": "Dados inválidos"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detalhe do erro",
+              "example": "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente."
+            },
+            "user_message": {
+              "type": "string",
+              "description": "Mensagem de erro sugerida para o usuário",
+              "example": "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente."
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ErrorField"
+              }
+            }
+          }
+        },
+        "SeriePoligono": {
+          "type": "object",
+          "properties": {
+            "listaSerie": {
+              "title": "Serie temporal do MODIS considerando os filtros selecionados.",
+              "type": "array",
+              "description": "Séries temporais do MODIS.",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "listaDatas": {
+              "title": "Sequência de datas correspondentes à série temporal solicitada.",
+              "type": "array",
+              "description": "Datas correspondentes à série temporal solicitada no formato yyyy-MM-dd",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "SerieFilterPoligono": {
+          "required": [
+            "poligono",
+            "satelite",
+            "tipoPerfil"
+          ],
+          "type": "object",
+          "properties": {
+            "tipoPerfil": {
+              "type": "string",
+              "description": "Tipo de índice a ser utilizado. Domínio: ndvi ou evi.",
+              "example": "ndvi"
+            },
+            "satelite": {
+              "type": "string",
+              "description": "Tipo de satélite a ser utilizado. Domínimo: terra, aqua ou comb.",
+              "example": "comb",
+              "enum": [
+                "terra",
+                "aqua",
+                "comb"
+              ]
+            },
+            "preFiltro": {
+              "type": "integer",
+              "description": "Tipo de pré-filtro a ser utilizado. Domínio: 0 = sem pre-filtragem, 1 = correção nodata, 2 = correção nuvem, 3 = correção nuvem/nodata.",
+              "format": "int32",
+              "example": 3,
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "filtro": {
+              "type": "string",
+              "description": "Tipo de filtro a ser utilizado. Domínio: flt = Filtro FlatBottom, wav = Filtro Wavelet, sav = Filtro Savitsky Golay.",
+              "example": "sav",
+              "enum": [
+                "flt",
+                "wav",
+                "sav"
+              ]
+            },
+            "parametroFiltro": {
+              "type": "integer",
+              "description": "Parâmetro do filtro a ser utilizado. Este parâmetro é obrigatório para todos os filtros, exceto do tipo wav. Domínio: 0, 10, 20 ou 30 para o filtro FlatBottom; 2, 3, 4, 5 ou 6 para o filtro Savitsky Golay.",
+              "format": "int32",
+              "example": 4,
+              "enum": [
+                null,
+                0,
+                10,
+                20,
+                30,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "poligono": {
+              "type": "string",
+              "description": "Pontos que compõem o polígono separados por vírgula (“,”) e coordenadas latitude e longitude de cada ponto separadas por espaço (\" \"), sendo que o último ponto deve ser igual ao primeiro, no sistema de referência EPSG 4326.",
+              "example": "-58.9144585643381 -13.5072128852218,-58.8657268985861 -13.5134933385645,-58.8657268985861 -13.5139585573307,-58.8666573361184 -13.5153542136291,-58.8667736408099 -13.5177966121512,-58.8658432032777 -13.5175640027682,-58.8629355859894 -13.5172150886936,-58.8614236249994 -13.5196574872158,-58.8586323124027 -13.5234955420363,-58.8577018748704 -13.5272172921653,-58.8559573044974 -13.5300086047621,-58.8535149059753 -13.5348934018065,-58.8553757810398 -13.5373358003286,-58.8550268669652 -13.5379173237863,-58.8546779528906 -13.5398945035423,-58.8627029766063 -13.5526880196109,-58.881660641326 -13.5498967070141,-58.9236466349691 -13.5444303865121,-58.9144585643381 -13.5072128852218"
+            }
+          }
+        },
+        "Serie": {
+          "type": "object",
+          "properties": {
+            "listaSerie": {
+              "title": "Serie temporal do MODIS considerando os filtros selecionados.",
+              "type": "array",
+              "description": "Séries temporais do MODIS.",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "listaDatas": {
+              "title": "Sequência de datas correspondentes à série temporal solicitada.",
+              "type": "array",
+              "description": "Datas correspondentes à série temporal solicitada no formato yyyy-MM-dd",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "SerieFilterPonto": {
+          "required": [
+            "latitude",
+            "longitude",
+            "satelite",
+            "tipoPerfil"
+          ],
+          "type": "object",
+          "properties": {
+            "tipoPerfil": {
+              "type": "string",
+              "description": "Tipo de índice a ser utilizado. Domínio: ndvi ou evi.",
+              "example": "ndvi"
+            },
+            "satelite": {
+              "type": "string",
+              "description": "Tipo de satélite a ser utilizado. Domínimo: terra, aqua ou comb.",
+              "example": "comb",
+              "enum": [
+                "terra",
+                "aqua",
+                "comb"
+              ]
+            },
+            "preFiltro": {
+              "type": "integer",
+              "description": "Tipo de pré-filtro a ser utilizado. Domínio: 0 = sem pre-filtragem, 1 = correção nodata, 2 = correção nuvem, 3 = correção nuvem/nodata.",
+              "format": "int32",
+              "example": 3,
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "filtro": {
+              "type": "string",
+              "description": "Tipo de filtro a ser utilizado. Domínio: flt = Filtro FlatBottom, wav = Filtro Wavelet, sav = Filtro Savitsky Golay.",
+              "example": "sav",
+              "enum": [
+                "flt",
+                "wav",
+                "sav"
+              ]
+            },
+            "parametroFiltro": {
+              "type": "integer",
+              "description": "Parâmetro do filtro a ser utilizado. Este parâmetro é obrigatório para todos os filtros, exceto do tipo wav. Domínio: 0, 10, 20 ou 30 para o filtro FlatBottom; 2, 3, 4, 5 ou 6 para o filtro Savitsky Golay.",
+              "format": "int32",
+              "example": 4,
+              "enum": [
+                null,
+                0,
+                10,
+                20,
+                30,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Longitude decimal do ponto no sistema de referência EPSG 4326.",
+              "format": "double",
+              "example": -58.88645
+            },
+            "latitude": {
+              "type": "number",
+              "description": "Latitude decimal do ponto no sistema de referência EPSG 4326.",
+              "format": "double",
+              "example": -13.5302
+            }
+          }
+        }
+      },
+      "responses": {
+        "BadRequestResponse": {
+          "description": "Requisição Inválida",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "InternalErrorResponse": {
+          "description": "Erro interno no servidor",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "schemas": {
+      "ErrorField": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Atributo/Campo com erro",
+            "example": "tipoPerfil"
+          },
+          "user_message": {
+            "type": "string",
+            "description": "Mensagem de erro sugerida para o usuário",
+            "example": "tipoPerfil é obrigatório"
+          }
+        },
+        "description": "Lista opcional de atributo(s)/campo(s) com erro"
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "Código de status do erro",
+            "format": "int32",
+            "example": 400
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Data e hora do erro",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "description": "Tipo do erro",
+            "example": "dados-invalidos"
+          },
+          "title": {
+            "type": "string",
+            "description": "Título do erro",
+            "example": "Dados inválidos"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Detalhe do erro",
+            "example": "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente."
+          },
+          "user_message": {
+            "type": "string",
+            "description": "Mensagem de erro sugerida para o usuário",
+            "example": "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorField"
+            }
+          }
+        }
+      },
+      "SeriePoligono": {
+        "type": "object",
+        "properties": {
+          "listaSerie": {
+            "title": "Serie temporal do MODIS considerando os filtros selecionados.",
+            "type": "array",
+            "description": "Séries temporais do MODIS.",
+            "items": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "listaDatas": {
+            "title": "Sequência de datas correspondentes à série temporal solicitada.",
+            "type": "array",
+            "description": "Datas correspondentes à série temporal solicitada no formato yyyy-MM-dd",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "SerieFilterPoligono": {
+        "required": [
+          "poligono",
+          "satelite",
+          "tipoPerfil"
+        ],
+        "type": "object",
+        "properties": {
+          "tipoPerfil": {
+            "type": "string",
+            "description": "Tipo de índice a ser utilizado. Domínio: ndvi ou evi.",
+            "example": "ndvi"
+          },
+          "satelite": {
+            "type": "string",
+            "description": "Tipo de satélite a ser utilizado. Domínimo: terra, aqua ou comb.",
+            "example": "comb",
+            "enum": [
+              "terra",
+              "aqua",
+              "comb"
+            ]
+          },
+          "preFiltro": {
+            "type": "integer",
+            "description": "Tipo de pré-filtro a ser utilizado. Domínio: 0 = sem pre-filtragem, 1 = correção nodata, 2 = correção nuvem, 3 = correção nuvem/nodata.",
+            "format": "int32",
+            "example": 3,
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "filtro": {
+            "type": "string",
+            "description": "Tipo de filtro a ser utilizado. Domínio: flt = Filtro FlatBottom, wav = Filtro Wavelet, sav = Filtro Savitsky Golay.",
+            "example": "sav",
+            "enum": [
+              "flt",
+              "wav",
+              "sav"
+            ]
+          },
+          "parametroFiltro": {
+            "type": "integer",
+            "description": "Parâmetro do filtro a ser utilizado. Este parâmetro é obrigatório para todos os filtros, exceto do tipo wav. Domínio: 0, 10, 20 ou 30 para o filtro FlatBottom; 2, 3, 4, 5 ou 6 para o filtro Savitsky Golay.",
+            "format": "int32",
+            "example": 4,
+            "enum": [
+              null,
+              0,
+              10,
+              20,
+              30,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "poligono": {
+            "type": "string",
+            "description": "Pontos que compõem o polígono separados por vírgula (“,”) e coordenadas latitude e longitude de cada ponto separadas por espaço (\" \"), sendo que o último ponto deve ser igual ao primeiro, no sistema de referência EPSG 4326.",
+            "example": "-58.9144585643381 -13.5072128852218,-58.8657268985861 -13.5134933385645,-58.8657268985861 -13.5139585573307,-58.8666573361184 -13.5153542136291,-58.8667736408099 -13.5177966121512,-58.8658432032777 -13.5175640027682,-58.8629355859894 -13.5172150886936,-58.8614236249994 -13.5196574872158,-58.8586323124027 -13.5234955420363,-58.8577018748704 -13.5272172921653,-58.8559573044974 -13.5300086047621,-58.8535149059753 -13.5348934018065,-58.8553757810398 -13.5373358003286,-58.8550268669652 -13.5379173237863,-58.8546779528906 -13.5398945035423,-58.8627029766063 -13.5526880196109,-58.881660641326 -13.5498967070141,-58.9236466349691 -13.5444303865121,-58.9144585643381 -13.5072128852218"
+          }
+        }
+      },
+      "Serie": {
+        "type": "object",
+        "properties": {
+          "listaSerie": {
+            "title": "Serie temporal do MODIS considerando os filtros selecionados.",
+            "type": "array",
+            "description": "Séries temporais do MODIS.",
+            "items": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "listaDatas": {
+            "title": "Sequência de datas correspondentes à série temporal solicitada.",
+            "type": "array",
+            "description": "Datas correspondentes à série temporal solicitada no formato yyyy-MM-dd",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "SerieFilterPonto": {
+        "required": [
+          "latitude",
+          "longitude",
+          "satelite",
+          "tipoPerfil"
+        ],
+        "type": "object",
+        "properties": {
+          "tipoPerfil": {
+            "type": "string",
+            "description": "Tipo de índice a ser utilizado. Domínio: ndvi ou evi.",
+            "example": "ndvi"
+          },
+          "satelite": {
+            "type": "string",
+            "description": "Tipo de satélite a ser utilizado. Domínimo: terra, aqua ou comb.",
+            "example": "comb",
+            "enum": [
+              "terra",
+              "aqua",
+              "comb"
+            ]
+          },
+          "preFiltro": {
+            "type": "integer",
+            "description": "Tipo de pré-filtro a ser utilizado. Domínio: 0 = sem pre-filtragem, 1 = correção nodata, 2 = correção nuvem, 3 = correção nuvem/nodata.",
+            "format": "int32",
+            "example": 3,
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "filtro": {
+            "type": "string",
+            "description": "Tipo de filtro a ser utilizado. Domínio: flt = Filtro FlatBottom, wav = Filtro Wavelet, sav = Filtro Savitsky Golay.",
+            "example": "sav",
+            "enum": [
+              "flt",
+              "wav",
+              "sav"
+            ]
+          },
+          "parametroFiltro": {
+            "type": "integer",
+            "description": "Parâmetro do filtro a ser utilizado. Este parâmetro é obrigatório para todos os filtros, exceto do tipo wav. Domínio: 0, 10, 20 ou 30 para o filtro FlatBottom; 2, 3, 4, 5 ou 6 para o filtro Savitsky Golay.",
+            "format": "int32",
+            "example": 4,
+            "enum": [
+              null,
+              0,
+              10,
+              20,
+              30,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude decimal do ponto no sistema de referência EPSG 4326.",
+            "format": "double",
+            "example": -58.88645
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude decimal do ponto no sistema de referência EPSG 4326.",
+            "format": "double",
+            "example": -13.5302
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequestResponse": {
+        "description": "Requisição Inválida",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalErrorResponse": {
+        "description": "Erro interno no servidor",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
