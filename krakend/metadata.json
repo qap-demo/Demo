@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace EduLearn",
+    "description": "Deploy EduLearn",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}

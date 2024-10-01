@@ -1,0 +1,243 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "EduLearn API",
+    "description": "A comprehensive API for accessing educational content such as courses, lessons, tutorials, and quizzes across multiple subjects and disciplines.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@edulearnapi.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.2",
+    "info": {
+      "title": "EduLearn API",
+      "description": "A comprehensive API for accessing educational content such as courses, lessons, tutorials, and quizzes across multiple subjects and disciplines.",
+      "version": "1.0.0",
+      "contact": {
+        "email": "support@edulearnapi.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Internal test server"
+      }
+    ],
+    "paths": {
+      "/api-edulearn/billings": {
+        "get": {
+          "summary": "Endpoint",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-edulearn/courses": {
+        "get": {
+          "summary": "Get a list of courses",
+          "description": "Retrieve a list of available courses based on subject, difficulty level, and duration.",
+          "parameters": [
+            {
+              "name": "subject",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "Mathematics"
+              }
+            },
+            {
+              "name": "difficulty",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "beginner"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of courses returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Course"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-edulearn/courses/{courseId}": {
+        "get": {
+          "summary": "Get course details",
+          "description": "Retrieve detailed information about a specific course, including lessons, duration, and quizzes.",
+          "parameters": [
+            {
+              "name": "courseId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Course details returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Course"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Course": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 101
+            },
+            "title": {
+              "type": "string",
+              "example": "Introduction to Python Programming"
+            },
+            "description": {
+              "type": "string",
+              "example": "A beginner-level course that teaches the fundamentals of Python programming, covering basic syntax, control structures, and data types."
+            },
+            "duration": {
+              "type": "string",
+              "example": "4 hours"
+            },
+            "difficulty": {
+              "type": "string",
+              "example": "Beginner"
+            },
+            "lessons": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "Lesson 1: Introduction to Python, Lesson 2: Data Types in Python"
+              }
+            },
+            "quizAvailable": {
+              "type": "boolean",
+              "example": true
+            },
+            "imageUrl": {
+              "type": "string",
+              "example": "https://example.com/images/python-course.jpg"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 101
+          },
+          "title": {
+            "type": "string",
+            "example": "Introduction to Python Programming"
+          },
+          "description": {
+            "type": "string",
+            "example": "A beginner-level course that teaches the fundamentals of Python programming, covering basic syntax, control structures, and data types."
+          },
+          "duration": {
+            "type": "string",
+            "example": "4 hours"
+          },
+          "difficulty": {
+            "type": "string",
+            "example": "Beginner"
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Lesson 1: Introduction to Python, Lesson 2: Data Types in Python"
+            }
+          },
+          "quizAvailable": {
+            "type": "boolean",
+            "example": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "https://example.com/images/python-course.jpg"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
