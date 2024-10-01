@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace PetStore v1",
+    "description": "Deploy Workspace petStore",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
