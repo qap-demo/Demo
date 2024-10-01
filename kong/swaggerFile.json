@@ -1,0 +1,3260 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Agritec",
+    "description": "API Agritec reúne informações úteis para o gerenciamento da produção de culturas agrícolas. Contempla a oferta de dados e modelos sobre: (i) época\nideal de plantio para dezenas de culturas, com base no zoneamento agrícola de risco climático; (ii) relação de cultivares mais aptas, para 12 culturas\n(Arroz, Algodão, Amendoim, Cevada, Feijão, Feijão Caupi, Girassol, Mamona, Milho, Soja, Sorgo e Trigo) diferentes; (iii) indicação de adubação e\ncorreção de solo conforme resultado prévio de análise de solo, previsão de produtividade e condições climáticas antes e durante a safra para cinco\nculturas (Arroz, Feijão, Milho, Soja e Trigo).\n",
+    "version": "v2"
+  },
+  "tags": [
+    {
+      "name": "Dados climáticos",
+      "description": "Recursos da API que fornece os dados climáticos em função do município, cultura, ciclo, tipo de solo e data de plantio."
+    },
+    {
+      "name": "Obtentores",
+      "description": "Recursos da API envolvendo informações de organizações obtentoras/mantenedoras de cultivares."
+    },
+    {
+      "name": "Cultivares",
+      "description": "Recursos da API envolvendo informações de cultivares."
+    },
+    {
+      "name": "Health",
+      "description": "Recursos da API envolvendo informações de culturas."
+    },
+    {
+      "name": "Municípios",
+      "description": "Recursos da API envolvendo informações de municípios brasileiros."
+    },
+    {
+      "name": "Produtividade",
+      "description": "Recursos da API que fornece a estimativa de produtividade em função do local, data de plantio e da cultura informada."
+    },
+    {
+      "name": "Culturas",
+      "description": "Recursos da API envolvendo informações de culturas."
+    },
+    {
+      "name": "Zoneamento",
+      "description": "Recursos da API envolvendo informações do Zoneamento agrícola de risco climático (Zarc)."
+    },
+    {
+      "name": "Previsão do tempo",
+      "description": "Recursos da API envolvendo informações de previsão do tempo."
+    },
+    {
+      "name": "Safra",
+      "description": "Recursos da API que fornece informações de safra."
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Agritec",
+      "description": "API Agritec reúne informações úteis para o gerenciamento da produção de culturas agrícolas. Contempla a oferta de dados e modelos sobre: (i) época\nideal de plantio para dezenas de culturas, com base no zoneamento agrícola de risco climático; (ii) relação de cultivares mais aptas, para 12 culturas\n(Arroz, Algodão, Amendoim, Cevada, Feijão, Feijão Caupi, Girassol, Mamona, Milho, Soja, Sorgo e Trigo) diferentes; (iii) indicação de adubação e\ncorreção de solo conforme resultado prévio de análise de solo, previsão de produtividade e condições climáticas antes e durante a safra para cinco\nculturas (Arroz, Feijão, Milho, Soja e Trigo).\n",
+      "version": "v2"
+    },
+    "tags": [
+      {
+        "name": "Dados climáticos",
+        "description": "Recursos da API que fornece os dados climáticos em função do município, cultura, ciclo, tipo de solo e data de plantio."
+      },
+      {
+        "name": "Obtentores",
+        "description": "Recursos da API envolvendo informações de organizações obtentoras/mantenedoras de cultivares."
+      },
+      {
+        "name": "Cultivares",
+        "description": "Recursos da API envolvendo informações de cultivares."
+      },
+      {
+        "name": "Health",
+        "description": "Recursos da API envolvendo informações de culturas."
+      },
+      {
+        "name": "Municípios",
+        "description": "Recursos da API envolvendo informações de municípios brasileiros."
+      },
+      {
+        "name": "Produtividade",
+        "description": "Recursos da API que fornece a estimativa de produtividade em função do local, data de plantio e da cultura informada."
+      },
+      {
+        "name": "Culturas",
+        "description": "Recursos da API envolvendo informações de culturas."
+      },
+      {
+        "name": "Zoneamento",
+        "description": "Recursos da API envolvendo informações do Zoneamento agrícola de risco climático (Zarc)."
+      },
+      {
+        "name": "Previsão do tempo",
+        "description": "Recursos da API envolvendo informações de previsão do tempo."
+      },
+      {
+        "name": "Safra",
+        "description": "Recursos da API que fornece informações de safra."
+      }
+    ],
+    "paths": {
+      "/api-agritec/billings": {
+        "get": {
+          "summary": "Endpoint",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-agritec/safra-atual": {
+        "get": {
+          "tags": [
+            "Safra"
+          ],
+          "summary": "Retorna o ano da safra atual no formato yyyy-yyyy.",
+          "description": "Retorna a safra atual.",
+          "operationId": "find_1",
+          "responses": {
+            "200": {
+              "description": "Retorna a safra atual",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SafraAtualResponse"
+                  },
+                  "example": {
+                    "data": {
+                      "safraAtual": "2024-2025"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-agritec/obtentores": {
+        "get": {
+          "tags": [
+            "Obtentores"
+          ],
+          "summary": "Retorna a lista completa de obtentores/mantenedores de cultivares.",
+          "description": "Retorna a lista de obtentores/mantenedores de cultivares.",
+          "operationId": "find_3",
+          "parameters": [
+            {
+              "name": "safra",
+              "in": "query",
+              "description": "Ano da safra no padrão yyyy-yyyy",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "2017-2018",
+                  "2018-2019",
+                  "2019-2020",
+                  "2020-2021",
+                  "2021-2022",
+                  "2022-2023",
+                  "2023-2024",
+                  "2024-2025"
+                ],
+                "default": "2024-2025"
+              },
+              "example": "2024-2025"
+            },
+            {
+              "name": "idCultura",
+              "in": "query",
+              "description": "Identificador da Cultura",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 128
+            },
+            {
+              "name": "uf",
+              "in": "query",
+              "description": "Sigla da Unidade da Federação",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "AC",
+                  "AL",
+                  "AP",
+                  "AM",
+                  "BA",
+                  "CE",
+                  "DF",
+                  "ES",
+                  "GO",
+                  "MA",
+                  "MT",
+                  "MS",
+                  "MG",
+                  "PA",
+                  "PB",
+                  "PR",
+                  "PE",
+                  "PI",
+                  "RJ",
+                  "RN",
+                  "RS",
+                  "RO",
+                  "RR",
+                  "SC",
+                  "SP",
+                  "SE",
+                  "TO"
+                ]
+              },
+              "example": "PI"
+            },
+            {
+              "name": "grupo",
+              "in": "query",
+              "description": "Grupo/ciclo de desenvolvimento",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ]
+              },
+              "example": "I"
+            },
+            {
+              "name": "dataAtualizacao",
+              "in": "query",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), retornando os registros com datas superiores à data indicada",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "2024-01-01"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de obtentores/mantenedores de cultivares",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtentorMantenedorResponse"
+                  },
+                  "example": {
+                    "meta": {
+                      "totalCount": 84
+                    },
+                    "data": [
+                      {
+                        "obtentorMantenedor": "ADVANTA COMERCIO DE SEMENTES LTDA",
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "obtentorMantenedor": "AGROINDUSTRIAL JK",
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "obtentorMantenedor": "AGROMEN SEMENTES AGRICOLAS LTDA",
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "obtentorMantenedor": "AGRO NORTE PESQUISA E SEMENTES LTDA",
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "obtentorMantenedor": "AGROPLANTA SEMENTES",
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "obtentorMantenedor": "AGROP. TERRA ALTA",
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "obtentorMantenedor": "AMIR JOSÉ KLEIN WERLE",
+                        "dataAtualizacao": "2024-05-10"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-08-10T22:48:45.483079593-03:00",
+                      "code": "dados-invalidos",
+                      "summary": "A requisição não pode ser processada.",
+                      "description": "A requisição não pode ser processada por motivo de validação de atributos.",
+                      "fieldErrors": [
+                        {
+                          "field": "dataAtualizacao",
+                          "entity": "geral",
+                          "summary": "Data de atualização inválida.",
+                          "description": "Data de atualização inválida, informe uma data válida no formato (yyyy-MM-dd)."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/produtividade": {
+        "get": {
+          "tags": [
+            "Produtividade"
+          ],
+          "summary": "Serviço que fornece a estimativa de produtividade em função do local, data de plantio e da cultura desejada.\n",
+          "description": "Estimativa da produtividade para a cultura desejada.",
+          "operationId": "find_2",
+          "parameters": [
+            {
+              "name": "idCultura",
+              "in": "query",
+              "description": "Identificador da cultura da qual se quer estimar a produtividade",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 60
+            },
+            {
+              "name": "idCultivar",
+              "in": "query",
+              "description": "Identificador da cultivar utilizada no empreendimento. Caso não fornecido, utiliza o coeficiente geral da cultura no cálculo",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 24507
+            },
+            {
+              "name": "codigoIBGE",
+              "in": "query",
+              "description": "Código IBGE do município onde localiza-se o empreendimento",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 2112001
+            },
+            {
+              "name": "cad",
+              "in": "query",
+              "description": "Capacidade de armazenamento de água no solo em ml",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 70
+            },
+            {
+              "name": "dataPlantio",
+              "in": "query",
+              "description": "Data de plantio no formato (yyyy-MM-dd), devendo ser menor ou igual a data de hoje",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "2024-05-01"
+            },
+            {
+              "name": "expectativaProdutividade",
+              "in": "query",
+              "description": "Produtividade esperada para o empreendimento. Caso não fornecido, utiliza a produtividade média do município para a cultura (ton/ha)",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": 3
+            },
+            {
+              "name": "latitude",
+              "in": "query",
+              "description": "Latitude onde localiza-se o empreendimento. Caso fornecida, utiliza os dados da estação meteorológica mais próxima, ao invés da mais próxima à coordenada do município.\nÉ obrigatório informar também o parâmetro \"longitude\". Grau decimal. Projeção - EPG32723.\n",
+              "required": false,
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "longitude",
+              "in": "query",
+              "description": "Longitude onde localiza-se o empreendimento. Caso fornecida, utiliza os dados da estação meteorológica mais próxima, ao invés da mais próxima à coordenada do município.\nÉ obrigatório informar também o parâmetro \"latitude\". Grau decimal. Projeção - EPG32723.\n",
+              "required": false,
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados do cálculo de produtividade",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProdutividadeResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-08-21T10:31:06.600695485-03:00",
+                      "code": "dados-invalidos",
+                      "summary": "A requisição não pode ser processada.",
+                      "description": "A requisição não pode ser processada por motivo de validação de atributos.",
+                      "fieldErrors": [
+                        {
+                          "field": "idCultura",
+                          "entity": "cultura",
+                          "summary": "Cultura não possui cálculo de produtividade associado.",
+                          "description": "Cultura não possui cálculo de produtividade associado, utilize uma cultura com cálculo de produtividade associado."
+                        },
+                        {
+                          "field": "idCultivar",
+                          "entity": "cultivar",
+                          "summary": "Identificador da cultivar não encontrado.",
+                          "description": "Identificador da cultivar não encontrado, utilize um identificador válido."
+                        },
+                        {
+                          "field": "codigoIBGE",
+                          "entity": "municipio",
+                          "summary": "Município não encontrado a partir do Código do IBGE informado.",
+                          "description": "Município não encontrado a partir do Código do IBGE informado, utilize um Código do IBGE válido."
+                        },
+                        {
+                          "field": "dataPlantio",
+                          "entity": "produtividade",
+                          "summary": "Data de plantio inválida.",
+                          "description": "Data de plantio inválida, informe uma data válida no formato (yyyy-MM-dd)."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/zoneamento": {
+        "get": {
+          "tags": [
+            "Zoneamento"
+          ],
+          "summary": "Serviço informa a melhor janela de plantio baseado no Zoneamento agrícola de risco climático (Zarc) para riscos de 20%, 30% ou 40%.\nEste valor indica o risco de insucesso do empreendimento pretendido de data indicada for selecionada.\n",
+          "description": "Retorna as datas de plantio com base no Zoneamento agrícola de risco climático (Zarc).",
+          "operationId": "find",
+          "parameters": [
+            {
+              "name": "idCultura",
+              "in": "query",
+              "description": "Identificador da cultura da qual se quer obter informações do Zarc",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 60
+            },
+            {
+              "name": "codigoIBGE",
+              "in": "query",
+              "description": "Código IBGE do município da qual se quer obter informações do Zarc",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 3502804
+            },
+            {
+              "name": "risco",
+              "in": "query",
+              "description": "Risco máximo admitido na recuperação do zoneamento de risco climático. Os valores possíveis são: 20, 30, 40 ou todos. Que correspondem aos riscos de 20%, 30% e 40%.\nCaso não seja informado, o risco de 20% será recuperado.\n",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "20",
+                  "30",
+                  "40",
+                  "todos"
+                ],
+                "default": "20"
+              },
+              "example": 20
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados do Zarc",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ZoneamentoResponse"
+                  },
+                  "example": {
+                    "meta": {
+                      "totalCount": 18
+                    },
+                    "data": [
+                      {
+                        "municipio": "ARACATUBA",
+                        "uf": "SP",
+                        "cultura": "SOJA",
+                        "culturaSafra": ".",
+                        "culturaCultivo": "SEQUEIRO",
+                        "culturaClima": "Não se aplica",
+                        "ciclo": "GRUPO I",
+                        "solo": "AD1",
+                        "diaIni": 21,
+                        "mesIni": 11,
+                        "diaFim": 30,
+                        "mesFim": 11,
+                        "safraIni": 2023,
+                        "safraFim": 2024,
+                        "risco": 20,
+                        "portaria": "Port.85 de_27-04-2023"
+                      },
+                      {
+                        "municipio": "ARACATUBA",
+                        "uf": "SP",
+                        "cultura": "SOJA",
+                        "culturaSafra": ".",
+                        "culturaCultivo": "SEQUEIRO",
+                        "culturaClima": "Não se aplica",
+                        "ciclo": "GRUPO I",
+                        "solo": "AD2",
+                        "diaIni": 21,
+                        "mesIni": 10,
+                        "diaFim": 31,
+                        "mesFim": 12,
+                        "safraIni": 2023,
+                        "safraFim": 2024,
+                        "risco": 20,
+                        "portaria": "Port.85 de_27-04-2023"
+                      },
+                      {
+                        "municipio": "ARACATUBA",
+                        "uf": "SP",
+                        "cultura": "SOJA",
+                        "culturaSafra": ".",
+                        "culturaCultivo": "SEQUEIRO",
+                        "culturaClima": "Não se aplica",
+                        "ciclo": "GRUPO I",
+                        "solo": "AD3",
+                        "diaIni": 21,
+                        "mesIni": 10,
+                        "diaFim": 31,
+                        "mesFim": 12,
+                        "safraIni": 2023,
+                        "safraFim": 2024,
+                        "risco": 20,
+                        "portaria": "Port.85 de_27-04-2023"
+                      },
+                      {
+                        "municipio": "ARACATUBA",
+                        "uf": "SP",
+                        "cultura": "SOJA",
+                        "culturaSafra": ".",
+                        "culturaCultivo": "SEQUEIRO",
+                        "culturaClima": "Não se aplica",
+                        "ciclo": "GRUPO I",
+                        "solo": "AD4",
+                        "diaIni": 11,
+                        "mesIni": 10,
+                        "diaFim": 31,
+                        "mesFim": 12,
+                        "safraIni": 2023,
+                        "safraFim": 2024,
+                        "risco": 20,
+                        "portaria": "Port.85 de_27-04-2023"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-08-10T22:53:15.882848242-03:00",
+                      "code": "dados-invalidos",
+                      "summary": "A requisição não pode ser processada.",
+                      "description": "A requisição não pode ser processada por motivo de validação de atributos.",
+                      "fieldErrors": [
+                        {
+                          "field": "idCultura",
+                          "entity": "cultura",
+                          "summary": "Identificador da cultura não encontrado.",
+                          "description": "Identificador da cultura não encontrado, utilize um identificador válido."
+                        },
+                        {
+                          "field": "codigoIBGE",
+                          "entity": "municipio",
+                          "summary": "Município não encontrado a partir do Código do IBGE informado.",
+                          "description": "Município não encontrado a partir do Código do IBGE informado, utilize um Código do IBGE válido."
+                        },
+                        {
+                          "field": "risco",
+                          "entity": "zoneamento",
+                          "summary": "Risco de Zoneamento inválido.",
+                          "description": "Risco de Zoneamento inválido, utilize um percentual de risco válido."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/municipios": {
+        "get": {
+          "tags": [
+            "Municípios"
+          ],
+          "summary": "Retorna a lista de municípios brasileiros.",
+          "description": "Retorna a lista de municípios brasileiros.",
+          "operationId": "find_4",
+          "parameters": [
+            {
+              "name": "uf",
+              "in": "query",
+              "description": "Sigla da Unidade da Federação",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "AC",
+                  "AL",
+                  "AP",
+                  "AM",
+                  "BA",
+                  "CE",
+                  "DF",
+                  "ES",
+                  "GO",
+                  "MA",
+                  "MT",
+                  "MS",
+                  "MG",
+                  "PA",
+                  "PB",
+                  "PR",
+                  "PE",
+                  "PI",
+                  "RJ",
+                  "RN",
+                  "RS",
+                  "RO",
+                  "RR",
+                  "SC",
+                  "SP",
+                  "SE",
+                  "TO"
+                ]
+              },
+              "example": "PI"
+            },
+            {
+              "name": "dataAtualizacao",
+              "in": "query",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), retornando os registros com datas superiores à data indicada",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "2024-01-01"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de municípios",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipioResponse"
+                  },
+                  "example": {
+                    "meta": {
+                      "totalCount": 5572
+                    },
+                    "data": [
+                      {
+                        "codigoIBGE": 5200050,
+                        "nome": "ABADIA DE GOIAS",
+                        "uf": "GO",
+                        "latitude": -16.7845993,
+                        "longitude": -49.453701,
+                        "dataAtualizacao": "2018-05-02"
+                      },
+                      {
+                        "codigoIBGE": 3100104,
+                        "nome": "ABADIA DOS DOURADOS",
+                        "uf": "MG",
+                        "latitude": -18.3528004,
+                        "longitude": -47.4574013,
+                        "dataAtualizacao": "2018-05-02"
+                      },
+                      {
+                        "codigoIBGE": 5200100,
+                        "nome": "ABADIANIA",
+                        "uf": "GO",
+                        "latitude": -16.1863003,
+                        "longitude": -48.7127991,
+                        "dataAtualizacao": "2018-05-02"
+                      },
+                      {
+                        "codigoIBGE": 3100203,
+                        "nome": "ABAETE",
+                        "uf": "MG",
+                        "latitude": -19.1030998,
+                        "longitude": -45.3592987,
+                        "dataAtualizacao": "2018-05-02"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-08-10T22:39:28.433356128-03:00",
+                      "code": "dados-invalidos",
+                      "summary": "A requisição não pode ser processada.",
+                      "description": "A requisição não pode ser processada por motivo de validação de atributos.",
+                      "fieldErrors": [
+                        {
+                          "field": "uf",
+                          "entity": "unidade-da-federacao",
+                          "summary": "Sigla da Unidade da Federação não encontrada.",
+                          "description": "Sigla da Unidade da Federação não encontrada, utilize uma sigla válida."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/municipios/{codigoIBGE}": {
+        "get": {
+          "tags": [
+            "Municípios"
+          ],
+          "summary": "Retorna o município desejado.",
+          "description": "Retorna o munícipio desejado.",
+          "operationId": "findByCodigoIBGE",
+          "parameters": [
+            {
+              "name": "codigoIBGE",
+              "in": "path",
+              "description": "Código do IBGE",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 3100104
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Código IBGE do município",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipioSingleResponse"
+                  },
+                  "example": {
+                    "data": {
+                      "codigoIBGE": 3100104,
+                      "nome": "ABADIA DOS DOURADOS",
+                      "uf": "MG",
+                      "latitude": -18.3528004,
+                      "longitude": -47.4574013,
+                      "dataAtualizacao": "2018-05-02"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-07-27T09:12:40.626561682-03:00",
+                      "code": "parametro-invalido",
+                      "summary": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer.",
+                      "description": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer."
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Recurso não encontrado.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 404,
+                      "timestamp": "2023-07-24T18:22:44.608749247-03:00",
+                      "code": "recurso-nao-encontrado",
+                      "summary": "Recurso não encontrado.",
+                      "description": "O recurso /resourcenotfound, que você tentou acessar, é inexistente."
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/culturas": {
+        "get": {
+          "tags": [
+            "Culturas"
+          ],
+          "summary": "Retorna a lista completa de culturas.",
+          "description": "Retorna a lista de culturas.",
+          "operationId": "find_6",
+          "responses": {
+            "200": {
+              "description": "Lista de culturas",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CulturaResponse"
+                  },
+                  "example": {
+                    "meta": {
+                      "totalCount": 165
+                    },
+                    "data": [
+                      {
+                        "id": 101,
+                        "nome": "ABACAXI IRRIGADO",
+                        "safra": "Sem Safra",
+                        "cultivo": "IRRIGADO",
+                        "clima": "Não se aplica",
+                        "hasZoneamento": true,
+                        "hasCultivar": false,
+                        "hasProdutividade": false,
+                        "hasAdubacao": false,
+                        "dataAtualizacao": null
+                      },
+                      {
+                        "id": 102,
+                        "nome": "ABACAXI SEQUEIRO",
+                        "safra": "Sem Safra",
+                        "cultivo": "SEQUEIRO",
+                        "clima": "Não se aplica",
+                        "hasZoneamento": true,
+                        "hasCultivar": false,
+                        "hasProdutividade": false,
+                        "hasAdubacao": false,
+                        "dataAtualizacao": null
+                      },
+                      {
+                        "id": 109,
+                        "nome": "AÇAI",
+                        "safra": "Perene",
+                        "cultivo": "SEQUEIRO",
+                        "clima": "Não se aplica",
+                        "hasZoneamento": true,
+                        "hasCultivar": false,
+                        "hasProdutividade": false,
+                        "hasAdubacao": false,
+                        "dataAtualizacao": null
+                      },
+                      {
+                        "id": 1222,
+                        "nome": "AÇAI IMPLANTAÇÃO IRRIGADO",
+                        "safra": "Perene",
+                        "cultivo": "IRRIGADO",
+                        "clima": "Não se aplica",
+                        "hasZoneamento": true,
+                        "hasCultivar": false,
+                        "hasProdutividade": false,
+                        "hasAdubacao": false,
+                        "dataAtualizacao": null
+                      },
+                      {
+                        "id": 1221,
+                        "nome": "AÇAI PRODUÇÃO IRRIGADO",
+                        "safra": "Perene",
+                        "cultivo": "IRRIGADO",
+                        "clima": "Não se aplica",
+                        "hasZoneamento": true,
+                        "hasCultivar": false,
+                        "hasProdutividade": false,
+                        "hasAdubacao": false,
+                        "dataAtualizacao": null
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-agritec/health": {
+        "get": {
+          "tags": [
+            "Health"
+          ],
+          "summary": "Resposta sem conteúdo.",
+          "description": "Resposta sem conteúdo, apenas para verificar o funcionamento da API.",
+          "operationId": "processarHealth",
+          "responses": {
+            "204": {
+              "description": "Resposta sem conteúdo, apenas para verificar o funcionamento da API."
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-agritec/cultivares": {
+        "get": {
+          "tags": [
+            "Cultivares"
+          ],
+          "summary": "Retorna a lista completa de cultivares.",
+          "description": "Retorna a lista de cultivares.",
+          "operationId": "find_7",
+          "parameters": [
+            {
+              "name": "safra",
+              "in": "query",
+              "description": "Ano da safra no padrão yyyy-yyyy",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "2017-2018",
+                  "2018-2019",
+                  "2019-2020",
+                  "2020-2021",
+                  "2021-2022",
+                  "2022-2023",
+                  "2023-2024",
+                  "2024-2025"
+                ],
+                "default": "2024-2025"
+              },
+              "example": "2024-2025"
+            },
+            {
+              "name": "idCultura",
+              "in": "query",
+              "description": "Identificador da Cultura",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 128
+            },
+            {
+              "name": "uf",
+              "in": "query",
+              "description": "Sigla da Unidade da Federação",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "AC",
+                  "AL",
+                  "AP",
+                  "AM",
+                  "BA",
+                  "CE",
+                  "DF",
+                  "ES",
+                  "GO",
+                  "MA",
+                  "MT",
+                  "MS",
+                  "MG",
+                  "PA",
+                  "PB",
+                  "PR",
+                  "PE",
+                  "PI",
+                  "RJ",
+                  "RN",
+                  "RS",
+                  "RO",
+                  "RR",
+                  "SC",
+                  "SP",
+                  "SE",
+                  "TO"
+                ]
+              },
+              "example": "PI"
+            },
+            {
+              "name": "grupo",
+              "in": "query",
+              "description": "Grupo/ciclo de desenvolvimento",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ]
+              },
+              "example": "I"
+            },
+            {
+              "name": "obtentorMantenedor",
+              "in": "query",
+              "description": "Nome da organização obtentora/mantenedora da cultivar",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "EMBRAPA MEIO NORTE"
+            },
+            {
+              "name": "dataAtualizacao",
+              "in": "query",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), retornando os registros com datas superiores à data indicada",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "2024-01-01"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de cultivares",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CultivarResponse"
+                  },
+                  "example": {
+                    "meta": {
+                      "totalCount": 128
+                    },
+                    "data": [
+                      {
+                        "idCultivar": 859364,
+                        "idCultura": 128,
+                        "safra": "2024-2025",
+                        "numeroRnc": "5232",
+                        "obtentorMantenedor": "EMBRAPA MEIO NORTE",
+                        "cultivar": "BR 17-Gurguéia",
+                        "cultura": "FEIJÃO CAUPI",
+                        "potencialProdutivo": 976,
+                        "duracaoCiclo": 70,
+                        "uf": "PI",
+                        "grupo": "I",
+                        "maturacaoFisiologica": 80,
+                        "floracao": 50,
+                        "enchimentoGraos": null,
+                        "sistemaCultivo": null,
+                        "genetica": null,
+                        "regiao": null,
+                        "grupoBioClimatico": null,
+                        "observacao": null,
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "idCultivar": 859371,
+                        "idCultura": 128,
+                        "safra": "2024-2025",
+                        "numeroRnc": "10224",
+                        "obtentorMantenedor": "EMBRAPA MEIO NORTE",
+                        "cultivar": "BRS - Mazagão",
+                        "cultura": "FEIJÃO CAUPI",
+                        "potencialProdutivo": 833,
+                        "duracaoCiclo": 60,
+                        "uf": "PI",
+                        "grupo": "I",
+                        "maturacaoFisiologica": 70,
+                        "floracao": 40,
+                        "enchimentoGraos": null,
+                        "sistemaCultivo": null,
+                        "genetica": null,
+                        "regiao": null,
+                        "grupoBioClimatico": null,
+                        "observacao": null,
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "idCultivar": 859375,
+                        "idCultura": 128,
+                        "safra": "2024-2025",
+                        "numeroRnc": "25892",
+                        "obtentorMantenedor": "EMBRAPA MEIO NORTE",
+                        "cultivar": "BRS Aracê",
+                        "cultura": "FEIJÃO CAUPI",
+                        "potencialProdutivo": 1335,
+                        "duracaoCiclo": 60,
+                        "uf": "PI",
+                        "grupo": "I",
+                        "maturacaoFisiologica": 70,
+                        "floracao": 40,
+                        "enchimentoGraos": null,
+                        "sistemaCultivo": null,
+                        "genetica": null,
+                        "regiao": null,
+                        "grupoBioClimatico": null,
+                        "observacao": null,
+                        "dataAtualizacao": "2024-05-10"
+                      },
+                      {
+                        "idCultivar": 859394,
+                        "idCultura": 128,
+                        "safra": "2024-2025",
+                        "numeroRnc": "14768",
+                        "obtentorMantenedor": "EMBRAPA MEIO NORTE",
+                        "cultivar": "BRS Guariba",
+                        "cultura": "FEIJÃO CAUPI",
+                        "potencialProdutivo": 1475,
+                        "duracaoCiclo": 60,
+                        "uf": "PI",
+                        "grupo": "I",
+                        "maturacaoFisiologica": 65,
+                        "floracao": 40,
+                        "enchimentoGraos": null,
+                        "sistemaCultivo": null,
+                        "genetica": null,
+                        "regiao": null,
+                        "grupoBioClimatico": null,
+                        "observacao": null,
+                        "dataAtualizacao": "2024-05-10"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-08-10T22:29:39.518386937-03:00",
+                      "code": "dados-invalidos",
+                      "summary": "A requisição não pode ser processada.",
+                      "description": "A requisição não pode ser processada por motivo de validação de atributos.",
+                      "fieldErrors": [
+                        {
+                          "field": "idCultura",
+                          "entity": "cultura",
+                          "summary": "Preenchimento é obrigatório.",
+                          "description": "Preenchimento é obrigatório."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/culturas/{id}/safra-atual": {
+        "get": {
+          "tags": [
+            "Culturas"
+          ],
+          "summary": "Retorna a safra atual da cultura desejada.",
+          "description": "Retorna a safra atual da cultura desejada.",
+          "operationId": "findSafraAtual",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Identificador da Cultura",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 128
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Safra atual da cultura",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SafraAtualResponse"
+                  },
+                  "example": {
+                    "data": {
+                      "safraAtual": "2024-2025"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-07-27T09:12:40.626561682-03:00",
+                      "code": "parametro-invalido",
+                      "summary": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer.",
+                      "description": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer."
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Recurso não encontrado.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 404,
+                      "timestamp": "2023-07-24T18:22:44.608749247-03:00",
+                      "code": "recurso-nao-encontrado",
+                      "summary": "Recurso não encontrado.",
+                      "description": "O recurso /resourcenotfound, que você tentou acessar, é inexistente."
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/culturas/{id}": {
+        "get": {
+          "tags": [
+            "Culturas"
+          ],
+          "summary": "Retorna a cultura desejada.",
+          "description": "Retorna a cultura desejada.",
+          "operationId": "findById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Identificador da Cultura",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 128
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados da cultura",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CulturaSingleResponse"
+                  },
+                  "example": {
+                    "data": {
+                      "id": 56,
+                      "nome": "MILHO",
+                      "safra": ".",
+                      "cultivo": "SEQUEIRO",
+                      "clima": "Não se aplica",
+                      "hasZoneamento": true,
+                      "hasCultivar": true,
+                      "hasProdutividade": true,
+                      "hasAdubacao": true,
+                      "dataAtualizacao": null
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-07-27T09:12:40.626561682-03:00",
+                      "code": "parametro-invalido",
+                      "summary": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer.",
+                      "description": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer."
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Recurso não encontrado.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 404,
+                      "timestamp": "2023-07-24T18:22:44.608749247-03:00",
+                      "code": "recurso-nao-encontrado",
+                      "summary": "Recurso não encontrado.",
+                      "description": "O recurso /resourcenotfound, que você tentou acessar, é inexistente."
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-agritec/cultivares/{id}": {
+        "get": {
+          "tags": [
+            "Cultivares"
+          ],
+          "summary": "Retorna a cultivar desejada.",
+          "description": "Retorna a cultivar desejada.",
+          "operationId": "findById_1",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Identificador da Cultura",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "example": 128
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Identicador da Cultivar",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CultivarSingleResponse"
+                  },
+                  "example": {
+                    "data": {
+                      "idCultivar": 859394,
+                      "idCultura": 128,
+                      "safra": "2024-2025",
+                      "numeroRnc": "14768",
+                      "obtentorMantenedor": "EMBRAPA MEIO NORTE",
+                      "cultivar": "BRS Guariba",
+                      "cultura": "FEIJÃO CAUPI",
+                      "potencialProdutivo": 1475,
+                      "duracaoCiclo": 60,
+                      "uf": "PI",
+                      "grupo": "I",
+                      "maturacaoFisiologica": 65,
+                      "floracao": 40,
+                      "enchimentoGraos": null,
+                      "sistemaCultivo": null,
+                      "genetica": null,
+                      "regiao": null,
+                      "grupoBioClimatico": null,
+                      "observacao": null,
+                      "dataAtualizacao": "2024-05-10"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 400,
+                      "timestamp": "2023-07-27T09:12:40.626561682-03:00",
+                      "code": "parametro-invalido",
+                      "summary": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer.",
+                      "description": "O parâmetro de URL: id recebeu o valor: 999a, que é de um tipo inválido. Corrija e informe um valor compatível com o tipo Integer."
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Recurso não encontrado.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 404,
+                      "timestamp": "2023-07-24T18:22:44.608749247-03:00",
+                      "code": "recurso-nao-encontrado",
+                      "summary": "Recurso não encontrado.",
+                      "description": "O recurso /resourcenotfound, que você tentou acessar, é inexistente."
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno inesperado no sistema.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "error": {
+                      "status": 500,
+                      "timestamp": "2023-07-24T18:26:35.147239529-03:00",
+                      "code": "erro-de-sistema",
+                      "summary": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema.",
+                      "description": "Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Cultivar": {
+          "type": "object",
+          "properties": {
+            "idCultivar": {
+              "type": "number",
+              "description": "Identificador da Cultivar"
+            },
+            "idCultura": {
+              "type": "number",
+              "description": "Identificador da Cultura"
+            },
+            "safra": {
+              "type": "string",
+              "description": "Ano da safra no formato yyyy-yyyy"
+            },
+            "numeroRnc": {
+              "type": "string",
+              "description": "Número RNC (Registro Nacional de Cultivares)"
+            },
+            "obtentorMantenedor": {
+              "type": "string",
+              "description": "Obtentor e/ou mantenedor"
+            },
+            "cultivar": {
+              "type": "string",
+              "description": "Nome da Cultivar"
+            },
+            "cultura": {
+              "type": "string",
+              "description": "Nome da Cultura"
+            },
+            "potencialProdutivo": {
+              "type": "number",
+              "description": "Potencial produtivo",
+              "format": "double"
+            },
+            "duracaoCiclo": {
+              "type": "integer",
+              "description": "Duração do ciclo",
+              "format": "int32"
+            },
+            "uf": {
+              "type": "string",
+              "description": "Sigla da Unidade da Federação"
+            },
+            "grupo": {
+              "type": "string",
+              "description": "<p>Grupo I - Ciclo de Desenvolvimento Precoce</p>\n<p>Grupo II - Ciclo de Desenvolvimento Médio</p>\n<p>Grupo III - Ciclo de Desenvolvimento Tardio</p>\n"
+            },
+            "maturacaoFisiologica": {
+              "type": "number",
+              "description": "Maturação fisiológica",
+              "format": "double"
+            },
+            "floracao": {
+              "type": "number",
+              "description": "Floração",
+              "format": "double"
+            },
+            "enchimentoGraos": {
+              "type": "number",
+              "description": "Enchimento de grãos",
+              "format": "double"
+            },
+            "sistemaCultivo": {
+              "type": "string",
+              "description": "<p>sequeiro - sem irrigação</p>\n<p>irrigado - com irrigação</p>\n<p>sequeiro/irrigado - com ou sem irrigação</p>\n"
+            },
+            "genetica": {
+              "type": "string",
+              "description": "<p>híbrido simples - cruzamento de duas linhagens puras</p>\n<p>híbrido duplo - cruzamento entre dois híbridos simples</p>\n<p>híbrido triplo - cruzamento entre uma linha pura e um híbrido simples</p>\n<p>variedade - cruzamento natural entre plantas da mesma linhagem</p>\n"
+            },
+            "regiao": {
+              "type": "string",
+              "description": "Região de adaptação"
+            },
+            "grupoBioClimatico": {
+              "type": "string",
+              "description": "Classificação do ciclo da soja baseado no grupo de maturidade relativa"
+            },
+            "observacao": {
+              "type": "string",
+              "description": "Informações gerais como, por exemplo, transformação genética"
+            },
+            "dataAtualizacao": {
+              "type": "string",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+            }
+          },
+          "description": "Dados da cultivar"
+        },
+        "CultivarResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/Cultivar"
+              }
+            }
+          }
+        },
+        "CultivarSingleResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/Cultivar"
+            }
+          }
+        },
+        "Cultura": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "Identificador da cultura"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Nome da cultura"
+            },
+            "nomeCompleto": {
+              "type": "string",
+              "description": "Nome completo da cultura, incluindo informações do cultivo e clima"
+            },
+            "safra": {
+              "type": "string",
+              "description": "Tipo de safra"
+            },
+            "cultivo": {
+              "type": "string",
+              "description": "Tipo de cultivo"
+            },
+            "clima": {
+              "type": "string",
+              "description": "Tipo de clima"
+            },
+            "hasZoneamento": {
+              "type": "boolean",
+              "description": "Cultura possui Zoneamento Agrícola associado"
+            },
+            "hasCultivar": {
+              "type": "boolean",
+              "description": "Cultura possui Cultivar associada"
+            },
+            "hasProdutividade": {
+              "type": "boolean",
+              "description": "Cultura possui Cálculo de Produtividade associado"
+            },
+            "hasAdubacao": {
+              "type": "boolean",
+              "description": "Cultura possui Cálculo de Adubação associado"
+            },
+            "dataAtualizacao": {
+              "type": "string",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+            }
+          },
+          "description": "Dados da cultura"
+        },
+        "CulturaResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/Cultura"
+              }
+            }
+          }
+        },
+        "CulturaSingleResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/Cultura"
+            }
+          }
+        },
+        "DadosClimaticos": {
+          "type": "object",
+          "properties": {
+            "temperaturaMinima": {
+              "type": "array",
+              "description": "Temperatura mínima do dia 1 ao dia N.",
+              "items": {
+                "type": "number",
+                "description": "Temperatura mínima do dia 1 ao dia N.",
+                "format": "double"
+              }
+            },
+            "temperaturaMaxima": {
+              "type": "array",
+              "description": "Temperatura máxima do dia 1 ao dia N.",
+              "items": {
+                "type": "number",
+                "description": "Temperatura máxima do dia 1 ao dia N.",
+                "format": "double"
+              }
+            },
+            "precipitacao": {
+              "type": "array",
+              "description": "Precipitação acumulada em cada decêndio (mm)",
+              "items": {
+                "$ref": "#/components/schemas/DadosClimaticosDecendio"
+              }
+            },
+            "balancoHidrico": {
+              "type": "array",
+              "description": "Percentual de água no solo em cada decêndio",
+              "items": {
+                "$ref": "#/components/schemas/DadosClimaticosDecendio"
+              }
+            },
+            "isna": {
+              "type": "array",
+              "description": "Média do ISNA (Índice de Satisfação das Necessidades de Água) em cada decêndio, é um indicador utilizado para avaliar a disponibilidade de água para atender às demandas de uma cultura.",
+              "items": {
+                "$ref": "#/components/schemas/DadosClimaticosDecendio"
+              }
+            }
+          },
+          "description": "Dados Climáticos"
+        },
+        "DadosClimaticosDecendio": {
+          "type": "object",
+          "properties": {
+            "decendio": {
+              "type": "string",
+              "description": "Decêndio no formato (dd/MM)"
+            },
+            "valor": {
+              "type": "number",
+              "description": "Valor",
+              "format": "double"
+            }
+          },
+          "description": "Dados climáticos por decêndio"
+        },
+        "Error": {
+          "type": "object",
+          "properties": {
+            "error": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "Código de status do erro",
+                  "format": "int32"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "description": "Data e hora do erro",
+                  "format": "date-time"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Código do erro"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Descrição resumida do erro"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Descrição detalhada do erro"
+                },
+                "fieldErrors": {
+                  "type": "array",
+                  "description": "Lista opcional de atributo(s)/campo(s) com erro",
+                  "items": {
+                    "$ref": "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "FieldError": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Código do erro"
+            },
+            "field": {
+              "type": "string",
+              "description": "Atributo/Campo com erro"
+            },
+            "entity": {
+              "type": "string",
+              "description": "Entidade do erro"
+            },
+            "summary": {
+              "type": "string",
+              "description": "Descrição resumida do erro"
+            },
+            "description": {
+              "type": "string",
+              "description": "Descrição detalhada do erro"
+            }
+          },
+          "description": "Atributos do campo com erro"
+        },
+        "Meta": {
+          "type": "object",
+          "properties": {
+            "totalCount": {
+              "type": "integer",
+              "description": "Total de registros retornados",
+              "format": "int32"
+            }
+          },
+          "description": "Metadados de informações sobre o resultado da consulta"
+        },
+        "Municipio": {
+          "type": "object",
+          "properties": {
+            "codigoIBGE": {
+              "type": "number",
+              "description": "Código IBGE do município"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Nome do município"
+            },
+            "uf": {
+              "type": "string",
+              "description": "Sigla da Unidade da Federação"
+            },
+            "latitude": {
+              "type": "number",
+              "description": "Latitude do munícipio",
+              "format": "double"
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Latitude do munícipio",
+              "format": "double"
+            },
+            "dataAtualizacao": {
+              "type": "string",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+            }
+          },
+          "description": "Dados de municípios brasileiros"
+        },
+        "MunicipioResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/Municipio"
+              }
+            }
+          }
+        },
+        "MunicipioSingleResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/Municipio"
+            }
+          }
+        },
+        "ObtentorMantenedor": {
+          "type": "object",
+          "properties": {
+            "obtentorMantenedor": {
+              "type": "string",
+              "description": "Nome da organização obtentora/mantenedora de cultivares"
+            },
+            "dataAtualizacao": {
+              "type": "string",
+              "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+            }
+          },
+          "description": "Dados da organização obtentora/mantenedora de cultivares"
+        },
+        "ObtentorMantenedorResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/ObtentorMantenedor"
+              }
+            }
+          }
+        },
+        "PrevisaoTempo": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "description": "Data da previsão do tempo"
+            },
+            "precipitacao": {
+              "type": "number",
+              "description": "Precipitação total na superfície (kg/m2)",
+              "format": "double"
+            },
+            "temperaturaMinima": {
+              "type": "number",
+              "description": "Temperatura mínima a 2m da superfície (ºC)",
+              "format": "double"
+            },
+            "temperaturaMaxima": {
+              "type": "number",
+              "description": "Temperatura máxima a 2m da superfície (ºC)",
+              "format": "double"
+            },
+            "pontoOrvalho": {
+              "type": "number",
+              "description": "Temperatura do ponto de orvalho a 2m da superfície (°C)",
+              "format": "double"
+            },
+            "umidadeRelativaMinima": {
+              "type": "number",
+              "description": "Umidade relativa mínima a 2m da superfície (%)",
+              "format": "double"
+            },
+            "umidadeRelativaMaxima": {
+              "type": "number",
+              "description": "Umidade relativa máxima a 2m da superfície (%)",
+              "format": "double"
+            },
+            "velocidadeVentoMinima": {
+              "type": "number",
+              "description": "Velocidade do vento mínima na superfície (m/s)",
+              "format": "double"
+            },
+            "velocidadeVentoMaxima": {
+              "type": "number",
+              "description": "Velocidade do vento máxima na superfície (m/s)",
+              "format": "double"
+            },
+            "coberturaNuvemBaixaMinima": {
+              "type": "number",
+              "description": "Percentual mínimo de cobertura de nuvens baixas",
+              "format": "double"
+            },
+            "coberturaNuvemBaixaMaxima": {
+              "type": "number",
+              "description": "Percentual máximo de cobertura de nuvens baixas",
+              "format": "double"
+            },
+            "coberturaNuvemMediaMinima": {
+              "type": "number",
+              "description": "Percentual mínimo de cobertura de nuvens médias",
+              "format": "double"
+            },
+            "coberturaNuvemMediaMaxima": {
+              "type": "number",
+              "description": "Percentual máximo de cobertura de nuvens médias",
+              "format": "double"
+            },
+            "coberturaNuvemAltaMinima": {
+              "type": "number",
+              "description": "Percentual mínimo de cobertura de nuvens altas",
+              "format": "double"
+            },
+            "coberturaNuvemAltaMaxima": {
+              "type": "number",
+              "description": "Percentual máximo de cobertura de nuvens altas",
+              "format": "double"
+            },
+            "umidadeVolumetricaSolo0a10": {
+              "type": "number",
+              "description": "Umidade volumétrica do solo na camada de 0 cm a 10 cm",
+              "format": "double"
+            },
+            "umidadeVolumetricaSolo10a40": {
+              "type": "number",
+              "description": "Umidade volumétrica do solo na camada de 10 cm a 40 cm",
+              "format": "double"
+            },
+            "umidadeVolumetricaSolo40a100": {
+              "type": "number",
+              "description": "Umidade volumétrica do solo na camada de 40 cm a 1 m",
+              "format": "double"
+            }
+          },
+          "description": "Retorna a previsão meteorológica de 15 dias para um determinado município."
+        },
+        "PrevisaoTempoResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/PrevisaoTempo"
+              }
+            }
+          }
+        },
+        "ProdutividadeResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/DadosClimaticos"
+            }
+          }
+        },
+        "SafraAtual": {
+          "type": "object",
+          "properties": {
+            "safraAtual": {
+              "type": "string",
+              "description": "Ano da safra atual no formato yyyy-yyyy"
+            }
+          },
+          "description": "Dados da safra atual"
+        },
+        "SafraAtualResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/SafraAtual"
+            }
+          }
+        },
+        "Zoneamento": {
+          "type": "object",
+          "properties": {
+            "municipio": {
+              "type": "string",
+              "description": "Nome do município"
+            },
+            "uf": {
+              "type": "string",
+              "description": "Sigla da Unidade da Federação"
+            },
+            "cultura": {
+              "type": "string",
+              "description": "Nome da cultura"
+            },
+            "culturaNomeCompleto": {
+              "type": "string",
+              "description": "Nome completo da cultura, incluindo informações do cultivo e clima"
+            },
+            "culturaSafra": {
+              "type": "string",
+              "description": "Tipo de safra da cultura"
+            },
+            "culturaCultivo": {
+              "type": "string",
+              "description": "Tipo de cultivo da cultura"
+            },
+            "culturaClima": {
+              "type": "string",
+              "description": "Tipo de clima da cultura"
+            },
+            "ciclo": {
+              "type": "string",
+              "description": "Nome do ciclo"
+            },
+            "solo": {
+              "type": "string",
+              "description": "Nome do solo"
+            },
+            "diaIni": {
+              "type": "integer",
+              "description": "Dia de início",
+              "format": "int32"
+            },
+            "mesIni": {
+              "type": "integer",
+              "description": "Mês de início",
+              "format": "int32"
+            },
+            "diaFim": {
+              "type": "integer",
+              "description": "Dia final",
+              "format": "int32"
+            },
+            "mesFim": {
+              "type": "integer",
+              "description": "Mês final",
+              "format": "int32"
+            },
+            "safraIni": {
+              "type": "integer",
+              "description": "Ano de início da safra no formato (YYYY)",
+              "format": "int32"
+            },
+            "safraFim": {
+              "type": "integer",
+              "description": "Ano final da safra no formato (YYYY)",
+              "format": "int32"
+            },
+            "risco": {
+              "type": "integer",
+              "description": "Risco máximo",
+              "format": "int32"
+            },
+            "portaria": {
+              "type": "string",
+              "description": "Portaria e data da publicação"
+            }
+          },
+          "description": "Dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+        },
+        "ZoneamentoMunicipio": {
+          "type": "object",
+          "properties": {
+            "cultura": {
+              "type": "string",
+              "description": "Nome da cultura"
+            },
+            "culturaNomeCompleto": {
+              "type": "string",
+              "description": "Nome completo da cultura, incluindo informações do cultivo e clima"
+            },
+            "culturaSafra": {
+              "type": "string",
+              "description": "Tipo de safra da cultura"
+            },
+            "culturaCultivo": {
+              "type": "string",
+              "description": "Tipo de cultivo da cultura"
+            },
+            "culturaClima": {
+              "type": "string",
+              "description": "Tipo de clima da cultura"
+            },
+            "solo": {
+              "type": "string",
+              "description": "Nome do solo"
+            },
+            "soloNomeCurto": {
+              "type": "string",
+              "description": "Nome curto do solo"
+            },
+            "ciclo": {
+              "type": "string",
+              "description": "Nome do ciclo"
+            },
+            "cicloNomeCurto": {
+              "type": "string",
+              "description": "Nome curto do ciclo"
+            },
+            "risco": {
+              "type": "array",
+              "description": "Risco máximo com 36 posições, compreendo o intervalo e os decêndios entre os meses de Janeiro e Dezembro",
+              "items": {
+                "type": "integer",
+                "description": "Risco máximo com 36 posições, compreendo o intervalo e os decêndios entre os meses de Janeiro e Dezembro",
+                "format": "int32"
+              }
+            },
+            "portaria": {
+              "type": "string",
+              "description": "Portaria e data da publicação"
+            }
+          },
+          "description": "Dados do Zoneamento Agrícola de Risco Climático (Zarc) do Município"
+        },
+        "ZoneamentoMunicipioCiclo": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Lista de ciclos de desenvolvimento da cultura disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)",
+              "items": {
+                "type": "string",
+                "description": "Lista de ciclos de desenvolvimento da cultura disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+              }
+            }
+          },
+          "description": "Lista de ciclos de desenvolvimento da cultura disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+        },
+        "ZoneamentoMunicipioResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/ZoneamentoMunicipio"
+              }
+            }
+          }
+        },
+        "ZoneamentoMunicipioSolo": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Lista de solos disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)",
+              "items": {
+                "type": "string",
+                "description": "Lista de solos disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+              }
+            }
+          },
+          "description": "Lista de solos disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+        },
+        "ZoneamentoResponse": {
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+              "items": {
+                "$ref": "#/components/schemas/Zoneamento"
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "servers": [
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Internal test server"
+      }
+    ],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "schemas": {
+      "Cultivar": {
+        "type": "object",
+        "properties": {
+          "idCultivar": {
+            "type": "number",
+            "description": "Identificador da Cultivar"
+          },
+          "idCultura": {
+            "type": "number",
+            "description": "Identificador da Cultura"
+          },
+          "safra": {
+            "type": "string",
+            "description": "Ano da safra no formato yyyy-yyyy"
+          },
+          "numeroRnc": {
+            "type": "string",
+            "description": "Número RNC (Registro Nacional de Cultivares)"
+          },
+          "obtentorMantenedor": {
+            "type": "string",
+            "description": "Obtentor e/ou mantenedor"
+          },
+          "cultivar": {
+            "type": "string",
+            "description": "Nome da Cultivar"
+          },
+          "cultura": {
+            "type": "string",
+            "description": "Nome da Cultura"
+          },
+          "potencialProdutivo": {
+            "type": "number",
+            "description": "Potencial produtivo",
+            "format": "double"
+          },
+          "duracaoCiclo": {
+            "type": "integer",
+            "description": "Duração do ciclo",
+            "format": "int32"
+          },
+          "uf": {
+            "type": "string",
+            "description": "Sigla da Unidade da Federação"
+          },
+          "grupo": {
+            "type": "string",
+            "description": "<p>Grupo I - Ciclo de Desenvolvimento Precoce</p>\n<p>Grupo II - Ciclo de Desenvolvimento Médio</p>\n<p>Grupo III - Ciclo de Desenvolvimento Tardio</p>\n"
+          },
+          "maturacaoFisiologica": {
+            "type": "number",
+            "description": "Maturação fisiológica",
+            "format": "double"
+          },
+          "floracao": {
+            "type": "number",
+            "description": "Floração",
+            "format": "double"
+          },
+          "enchimentoGraos": {
+            "type": "number",
+            "description": "Enchimento de grãos",
+            "format": "double"
+          },
+          "sistemaCultivo": {
+            "type": "string",
+            "description": "<p>sequeiro - sem irrigação</p>\n<p>irrigado - com irrigação</p>\n<p>sequeiro/irrigado - com ou sem irrigação</p>\n"
+          },
+          "genetica": {
+            "type": "string",
+            "description": "<p>híbrido simples - cruzamento de duas linhagens puras</p>\n<p>híbrido duplo - cruzamento entre dois híbridos simples</p>\n<p>híbrido triplo - cruzamento entre uma linha pura e um híbrido simples</p>\n<p>variedade - cruzamento natural entre plantas da mesma linhagem</p>\n"
+          },
+          "regiao": {
+            "type": "string",
+            "description": "Região de adaptação"
+          },
+          "grupoBioClimatico": {
+            "type": "string",
+            "description": "Classificação do ciclo da soja baseado no grupo de maturidade relativa"
+          },
+          "observacao": {
+            "type": "string",
+            "description": "Informações gerais como, por exemplo, transformação genética"
+          },
+          "dataAtualizacao": {
+            "type": "string",
+            "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+          }
+        },
+        "description": "Dados da cultivar"
+      },
+      "CultivarResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/Cultivar"
+            }
+          }
+        }
+      },
+      "CultivarSingleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Cultivar"
+          }
+        }
+      },
+      "Cultura": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Identificador da cultura"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome da cultura"
+          },
+          "nomeCompleto": {
+            "type": "string",
+            "description": "Nome completo da cultura, incluindo informações do cultivo e clima"
+          },
+          "safra": {
+            "type": "string",
+            "description": "Tipo de safra"
+          },
+          "cultivo": {
+            "type": "string",
+            "description": "Tipo de cultivo"
+          },
+          "clima": {
+            "type": "string",
+            "description": "Tipo de clima"
+          },
+          "hasZoneamento": {
+            "type": "boolean",
+            "description": "Cultura possui Zoneamento Agrícola associado"
+          },
+          "hasCultivar": {
+            "type": "boolean",
+            "description": "Cultura possui Cultivar associada"
+          },
+          "hasProdutividade": {
+            "type": "boolean",
+            "description": "Cultura possui Cálculo de Produtividade associado"
+          },
+          "hasAdubacao": {
+            "type": "boolean",
+            "description": "Cultura possui Cálculo de Adubação associado"
+          },
+          "dataAtualizacao": {
+            "type": "string",
+            "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+          }
+        },
+        "description": "Dados da cultura"
+      },
+      "CulturaResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/Cultura"
+            }
+          }
+        }
+      },
+      "CulturaSingleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Cultura"
+          }
+        }
+      },
+      "DadosClimaticos": {
+        "type": "object",
+        "properties": {
+          "temperaturaMinima": {
+            "type": "array",
+            "description": "Temperatura mínima do dia 1 ao dia N.",
+            "items": {
+              "type": "number",
+              "description": "Temperatura mínima do dia 1 ao dia N.",
+              "format": "double"
+            }
+          },
+          "temperaturaMaxima": {
+            "type": "array",
+            "description": "Temperatura máxima do dia 1 ao dia N.",
+            "items": {
+              "type": "number",
+              "description": "Temperatura máxima do dia 1 ao dia N.",
+              "format": "double"
+            }
+          },
+          "precipitacao": {
+            "type": "array",
+            "description": "Precipitação acumulada em cada decêndio (mm)",
+            "items": {
+              "$ref": "#/components/schemas/DadosClimaticosDecendio"
+            }
+          },
+          "balancoHidrico": {
+            "type": "array",
+            "description": "Percentual de água no solo em cada decêndio",
+            "items": {
+              "$ref": "#/components/schemas/DadosClimaticosDecendio"
+            }
+          },
+          "isna": {
+            "type": "array",
+            "description": "Média do ISNA (Índice de Satisfação das Necessidades de Água) em cada decêndio, é um indicador utilizado para avaliar a disponibilidade de água para atender às demandas de uma cultura.",
+            "items": {
+              "$ref": "#/components/schemas/DadosClimaticosDecendio"
+            }
+          }
+        },
+        "description": "Dados Climáticos"
+      },
+      "DadosClimaticosDecendio": {
+        "type": "object",
+        "properties": {
+          "decendio": {
+            "type": "string",
+            "description": "Decêndio no formato (dd/MM)"
+          },
+          "valor": {
+            "type": "number",
+            "description": "Valor",
+            "format": "double"
+          }
+        },
+        "description": "Dados climáticos por decêndio"
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "integer",
+                "description": "Código de status do erro",
+                "format": "int32"
+              },
+              "timestamp": {
+                "type": "string",
+                "description": "Data e hora do erro",
+                "format": "date-time"
+              },
+              "code": {
+                "type": "string",
+                "description": "Código do erro"
+              },
+              "summary": {
+                "type": "string",
+                "description": "Descrição resumida do erro"
+              },
+              "description": {
+                "type": "string",
+                "description": "Descrição detalhada do erro"
+              },
+              "fieldErrors": {
+                "type": "array",
+                "description": "Lista opcional de atributo(s)/campo(s) com erro",
+                "items": {
+                  "$ref": "#/components/schemas/FieldError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "FieldError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Código do erro"
+          },
+          "field": {
+            "type": "string",
+            "description": "Atributo/Campo com erro"
+          },
+          "entity": {
+            "type": "string",
+            "description": "Entidade do erro"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Descrição resumida do erro"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição detalhada do erro"
+          }
+        },
+        "description": "Atributos do campo com erro"
+      },
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total de registros retornados",
+            "format": "int32"
+          }
+        },
+        "description": "Metadados de informações sobre o resultado da consulta"
+      },
+      "Municipio": {
+        "type": "object",
+        "properties": {
+          "codigoIBGE": {
+            "type": "number",
+            "description": "Código IBGE do município"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do município"
+          },
+          "uf": {
+            "type": "string",
+            "description": "Sigla da Unidade da Federação"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude do munícipio",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Latitude do munícipio",
+            "format": "double"
+          },
+          "dataAtualizacao": {
+            "type": "string",
+            "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+          }
+        },
+        "description": "Dados de municípios brasileiros"
+      },
+      "MunicipioResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/Municipio"
+            }
+          }
+        }
+      },
+      "MunicipioSingleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Municipio"
+          }
+        }
+      },
+      "ObtentorMantenedor": {
+        "type": "object",
+        "properties": {
+          "obtentorMantenedor": {
+            "type": "string",
+            "description": "Nome da organização obtentora/mantenedora de cultivares"
+          },
+          "dataAtualizacao": {
+            "type": "string",
+            "description": "Data da última atualização no formato (yyyy-MM-dd), se informada"
+          }
+        },
+        "description": "Dados da organização obtentora/mantenedora de cultivares"
+      },
+      "ObtentorMantenedorResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/ObtentorMantenedor"
+            }
+          }
+        }
+      },
+      "PrevisaoTempo": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string",
+            "description": "Data da previsão do tempo"
+          },
+          "precipitacao": {
+            "type": "number",
+            "description": "Precipitação total na superfície (kg/m2)",
+            "format": "double"
+          },
+          "temperaturaMinima": {
+            "type": "number",
+            "description": "Temperatura mínima a 2m da superfície (ºC)",
+            "format": "double"
+          },
+          "temperaturaMaxima": {
+            "type": "number",
+            "description": "Temperatura máxima a 2m da superfície (ºC)",
+            "format": "double"
+          },
+          "pontoOrvalho": {
+            "type": "number",
+            "description": "Temperatura do ponto de orvalho a 2m da superfície (°C)",
+            "format": "double"
+          },
+          "umidadeRelativaMinima": {
+            "type": "number",
+            "description": "Umidade relativa mínima a 2m da superfície (%)",
+            "format": "double"
+          },
+          "umidadeRelativaMaxima": {
+            "type": "number",
+            "description": "Umidade relativa máxima a 2m da superfície (%)",
+            "format": "double"
+          },
+          "velocidadeVentoMinima": {
+            "type": "number",
+            "description": "Velocidade do vento mínima na superfície (m/s)",
+            "format": "double"
+          },
+          "velocidadeVentoMaxima": {
+            "type": "number",
+            "description": "Velocidade do vento máxima na superfície (m/s)",
+            "format": "double"
+          },
+          "coberturaNuvemBaixaMinima": {
+            "type": "number",
+            "description": "Percentual mínimo de cobertura de nuvens baixas",
+            "format": "double"
+          },
+          "coberturaNuvemBaixaMaxima": {
+            "type": "number",
+            "description": "Percentual máximo de cobertura de nuvens baixas",
+            "format": "double"
+          },
+          "coberturaNuvemMediaMinima": {
+            "type": "number",
+            "description": "Percentual mínimo de cobertura de nuvens médias",
+            "format": "double"
+          },
+          "coberturaNuvemMediaMaxima": {
+            "type": "number",
+            "description": "Percentual máximo de cobertura de nuvens médias",
+            "format": "double"
+          },
+          "coberturaNuvemAltaMinima": {
+            "type": "number",
+            "description": "Percentual mínimo de cobertura de nuvens altas",
+            "format": "double"
+          },
+          "coberturaNuvemAltaMaxima": {
+            "type": "number",
+            "description": "Percentual máximo de cobertura de nuvens altas",
+            "format": "double"
+          },
+          "umidadeVolumetricaSolo0a10": {
+            "type": "number",
+            "description": "Umidade volumétrica do solo na camada de 0 cm a 10 cm",
+            "format": "double"
+          },
+          "umidadeVolumetricaSolo10a40": {
+            "type": "number",
+            "description": "Umidade volumétrica do solo na camada de 10 cm a 40 cm",
+            "format": "double"
+          },
+          "umidadeVolumetricaSolo40a100": {
+            "type": "number",
+            "description": "Umidade volumétrica do solo na camada de 40 cm a 1 m",
+            "format": "double"
+          }
+        },
+        "description": "Retorna a previsão meteorológica de 15 dias para um determinado município."
+      },
+      "PrevisaoTempoResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/PrevisaoTempo"
+            }
+          }
+        }
+      },
+      "ProdutividadeResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DadosClimaticos"
+          }
+        }
+      },
+      "SafraAtual": {
+        "type": "object",
+        "properties": {
+          "safraAtual": {
+            "type": "string",
+            "description": "Ano da safra atual no formato yyyy-yyyy"
+          }
+        },
+        "description": "Dados da safra atual"
+      },
+      "SafraAtualResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SafraAtual"
+          }
+        }
+      },
+      "Zoneamento": {
+        "type": "object",
+        "properties": {
+          "municipio": {
+            "type": "string",
+            "description": "Nome do município"
+          },
+          "uf": {
+            "type": "string",
+            "description": "Sigla da Unidade da Federação"
+          },
+          "cultura": {
+            "type": "string",
+            "description": "Nome da cultura"
+          },
+          "culturaNomeCompleto": {
+            "type": "string",
+            "description": "Nome completo da cultura, incluindo informações do cultivo e clima"
+          },
+          "culturaSafra": {
+            "type": "string",
+            "description": "Tipo de safra da cultura"
+          },
+          "culturaCultivo": {
+            "type": "string",
+            "description": "Tipo de cultivo da cultura"
+          },
+          "culturaClima": {
+            "type": "string",
+            "description": "Tipo de clima da cultura"
+          },
+          "ciclo": {
+            "type": "string",
+            "description": "Nome do ciclo"
+          },
+          "solo": {
+            "type": "string",
+            "description": "Nome do solo"
+          },
+          "diaIni": {
+            "type": "integer",
+            "description": "Dia de início",
+            "format": "int32"
+          },
+          "mesIni": {
+            "type": "integer",
+            "description": "Mês de início",
+            "format": "int32"
+          },
+          "diaFim": {
+            "type": "integer",
+            "description": "Dia final",
+            "format": "int32"
+          },
+          "mesFim": {
+            "type": "integer",
+            "description": "Mês final",
+            "format": "int32"
+          },
+          "safraIni": {
+            "type": "integer",
+            "description": "Ano de início da safra no formato (YYYY)",
+            "format": "int32"
+          },
+          "safraFim": {
+            "type": "integer",
+            "description": "Ano final da safra no formato (YYYY)",
+            "format": "int32"
+          },
+          "risco": {
+            "type": "integer",
+            "description": "Risco máximo",
+            "format": "int32"
+          },
+          "portaria": {
+            "type": "string",
+            "description": "Portaria e data da publicação"
+          }
+        },
+        "description": "Dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+      },
+      "ZoneamentoMunicipio": {
+        "type": "object",
+        "properties": {
+          "cultura": {
+            "type": "string",
+            "description": "Nome da cultura"
+          },
+          "culturaNomeCompleto": {
+            "type": "string",
+            "description": "Nome completo da cultura, incluindo informações do cultivo e clima"
+          },
+          "culturaSafra": {
+            "type": "string",
+            "description": "Tipo de safra da cultura"
+          },
+          "culturaCultivo": {
+            "type": "string",
+            "description": "Tipo de cultivo da cultura"
+          },
+          "culturaClima": {
+            "type": "string",
+            "description": "Tipo de clima da cultura"
+          },
+          "solo": {
+            "type": "string",
+            "description": "Nome do solo"
+          },
+          "soloNomeCurto": {
+            "type": "string",
+            "description": "Nome curto do solo"
+          },
+          "ciclo": {
+            "type": "string",
+            "description": "Nome do ciclo"
+          },
+          "cicloNomeCurto": {
+            "type": "string",
+            "description": "Nome curto do ciclo"
+          },
+          "risco": {
+            "type": "array",
+            "description": "Risco máximo com 36 posições, compreendo o intervalo e os decêndios entre os meses de Janeiro e Dezembro",
+            "items": {
+              "type": "integer",
+              "description": "Risco máximo com 36 posições, compreendo o intervalo e os decêndios entre os meses de Janeiro e Dezembro",
+              "format": "int32"
+            }
+          },
+          "portaria": {
+            "type": "string",
+            "description": "Portaria e data da publicação"
+          }
+        },
+        "description": "Dados do Zoneamento Agrícola de Risco Climático (Zarc) do Município"
+      },
+      "ZoneamentoMunicipioCiclo": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Lista de ciclos de desenvolvimento da cultura disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)",
+            "items": {
+              "type": "string",
+              "description": "Lista de ciclos de desenvolvimento da cultura disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+            }
+          }
+        },
+        "description": "Lista de ciclos de desenvolvimento da cultura disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+      },
+      "ZoneamentoMunicipioResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/ZoneamentoMunicipio"
+            }
+          }
+        }
+      },
+      "ZoneamentoMunicipioSolo": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Lista de solos disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)",
+            "items": {
+              "type": "string",
+              "description": "Lista de solos disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+            }
+          }
+        },
+        "description": "Lista de solos disponíveis para consulta dos dados do Zoneamento Agrícola de Risco Climático (Zarc)"
+      },
+      "ZoneamentoResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "data": {
+            "type": "array",
+            "description": "Um objeto do tipo data que encapsula um array de objetos com o resultado da consulta",
+            "items": {
+              "$ref": "#/components/schemas/Zoneamento"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

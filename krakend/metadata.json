@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Agritec ",
+    "description": "Deploy Agritec",
+    "dockerRegistry": "dockerHub-private-repo"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
