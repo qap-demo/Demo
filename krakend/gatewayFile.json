@@ -1,0 +1,789 @@
+{
+  "version": 3,
+  "name": "API-Agritec",
+  "timeout": "5000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "no-op",
+  "port": 3890,
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/etc/krakend/plugins/"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/api-agritec/safra-atual",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "safra-atual",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/safra-atual",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/safra-atual",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/billings",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "Billings",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET"
+          ],
+          "expose_headers": [
+            "*"
+          ],
+          "allow_headers": [
+            "*"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/users",
+          "encoding": "json",
+          "sd": "static",
+          "cache_ttl": "",
+          "disable_host_sanitize": ""
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/users",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://63ee25ec5e9f1583bdbd0d37.mockapi.io/"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/obtentores",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "safra",
+        "idCultura",
+        "uf",
+        "grupo",
+        "dataAtualizacao"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "obtentores",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/obtentores",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/obtentores",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/municipios",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "uf",
+        "dataAtualizacao"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "municipios",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/municipios",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/municipios",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/zoneamento",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "idCultura",
+        "codigoIBGE",
+        "risco"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "zoneamento",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/zoneamento",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/zoneamento",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/culturas",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "culturas",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/culturas",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/culturas",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/culturas/{id}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "{id}",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/culturas/{id}",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/culturas/{id}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/municipios/{codigoIBGE}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "{codigoIBGE}",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/municipios/{codigoIBGE}",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/municipios/{codigoIBGE}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/health",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "health",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/health",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/health",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/produtividade",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "idCultura",
+        "idCultivar",
+        "codigoIBGE",
+        "cad",
+        "dataPlantio",
+        "expectativaProdutividade",
+        "latitude",
+        "longitude"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "produtividade",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/produtividade",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/produtividade",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/culturas/{id}/safra-atual",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "safra-atual",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/culturas/{id}/safra-atual",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/culturas/{id}/safra-atual",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/cultivares",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "safra",
+        "idCultura",
+        "uf",
+        "grupo",
+        "obtentorMantenedor",
+        "dataAtualizacao"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "cultivares",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/cultivares",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/cultivares",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api-agritec/cultivares/{id}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://idp.qriarlabs.cloud/realms/qap-demo/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        },
+        "security/cors": {
+          "name": "{id}",
+          "allow_origins": [
+            "*"
+          ],
+          "allow_methods": [
+            "GET",
+            "HEAD",
+            "POST"
+          ],
+          "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+          ],
+          "allow_headers": [
+            "Accept-Language"
+          ],
+          "max_age": "12h",
+          "allow_credentials": false,
+          "debug": false,
+          "url_pattern": "/agritec/v2/cultivares/{id}",
+          "encoding": "no-op",
+          "sd": "static",
+          "timeout": "3000ms",
+          "cache_ttl": "300s",
+          "disable_host_sanitize": false
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/agritec/v2/cultivares/{id}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "https://api.cnptia.embrapa.br",
+            "http://api.cnptia.embrapa.br"
+          ],
+          "cache_ttl": "300s"
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "plugin/http-server": {
+      "name": [
+        "krakend-server-billing"
+      ],
+      "krakend-server-billing": {
+        "endpoint_checker": "http://qap-demo.qriarlabs.cloud:8091/check",
+        "endpoint_charge": "http://qap-demo.qriarlabs.cloud:8092/charge"
+      }
+    }
+  }
+}
