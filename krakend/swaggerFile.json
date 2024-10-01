@@ -1,0 +1,238 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Product API",
+    "description": "API para fornecer dados de produtos para um e-commerce, incluindo detalhes de produtos, imagens e endpoints.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@ecommerce.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.2",
+    "info": {
+      "title": "Product API",
+      "description": "API para fornecer dados de produtos para um e-commerce, incluindo detalhes de produtos, imagens e endpoints.",
+      "version": "1.0.0",
+      "contact": {
+        "email": "support@ecommerce.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Internal test server"
+      }
+    ],
+    "paths": {
+      "/api-commercepro_/billings": {
+        "get": {
+          "summary": "Endpoint",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-commercepro_/products/{productId}/image": {
+        "get": {
+          "summary": "Obter imagem do produto",
+          "description": "Retorna a URL da imagem de um produto específico.",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Imagem do produto retornada com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "imageUrl": {
+                        "type": "string",
+                        "example": "https://example.com/images/product-123.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-commercepro_/products": {
+        "get": {
+          "summary": "Obter lista de produtos",
+          "description": "Retorna uma lista de produtos disponíveis no catálogo.",
+          "responses": {
+            "200": {
+              "description": "Lista de produtos retornada com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-commercepro_/products/{productId}": {
+        "get": {
+          "summary": "Obter detalhes do produto",
+          "description": "Retorna as informações de um produto específico pelo ID.",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detalhes do produto retornados com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Product": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 123
+            },
+            "name": {
+              "type": "string",
+              "example": "Cadeira Ergonomica"
+            },
+            "description": {
+              "type": "string",
+              "example": "Cadeira ergonômica com suporte lombar ajustável."
+            },
+            "price": {
+              "type": "number",
+              "format": "float",
+              "example": 249.99
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "available",
+                "out_of_stock"
+              ],
+              "example": "available"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123
+          },
+          "name": {
+            "type": "string",
+            "example": "Cadeira Ergonomica"
+          },
+          "description": {
+            "type": "string",
+            "example": "Cadeira ergonômica com suporte lombar ajustável."
+          },
+          "price": {
+            "type": "number",
+            "format": "float",
+            "example": 249.99
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "out_of_stock"
+            ],
+            "example": "available"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
