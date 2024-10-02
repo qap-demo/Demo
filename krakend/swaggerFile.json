@@ -1,0 +1,451 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "WellnessTrack API",
+    "description": "A comprehensive API for accessing wellness-related data, including meditation routines, fitness tracking, mental health exercises, and sleep monitoring. Ideal for building wellness and self-care applications.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@wellnesstrackapi.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.2",
+    "info": {
+      "title": "WellnessTrack API",
+      "description": "A comprehensive API for accessing wellness-related data, including meditation routines, fitness tracking, mental health exercises, and sleep monitoring. Ideal for building wellness and self-care applications.",
+      "version": "1.0.0",
+      "contact": {
+        "email": "support@wellnesstrackapi.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Internal test server"
+      }
+    ],
+    "paths": {
+      "/api-wellnesstrack_/nutrition": {
+        "get": {
+          "summary": "Get nutrition plans",
+          "description": "Retrieve personalized nutrition plans based on dietary preferences, nutritional goals, and caloric intake.",
+          "parameters": [
+            {
+              "name": "dietType",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "Vegan"
+              }
+            },
+            {
+              "name": "caloricGoal",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "2000 kcal"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Nutrition plans returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/NutritionPlan"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-wellnesstrack_/sleep-tracking": {
+        "get": {
+          "summary": "Get sleep tracking data",
+          "description": "Retrieve data on sleep quality, duration, and sleep stages for a specific user.",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sleep tracking data returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SleepTracking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-wellnesstrack_/fitness": {
+        "get": {
+          "summary": "Get fitness routines",
+          "description": "Retrieve a list of fitness routines based on workout type, duration, and intensity.",
+          "parameters": [
+            {
+              "name": "workoutType",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "Yoga"
+              }
+            },
+            {
+              "name": "intensity",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "Low"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of fitness routines returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/FitnessRoutine"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-wellnesstrack_/meditation": {
+        "get": {
+          "summary": "Get meditation routines",
+          "description": "Retrieve a list of meditation routines based on duration, type, and user preferences.",
+          "parameters": [
+            {
+              "name": "type",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "Mindfulness"
+              }
+            },
+            {
+              "name": "duration",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example": "10 minutes"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of meditation routines returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MeditationRoutine"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-wellnesstrack_/billing": {
+        "get": {
+          "summary": "Endpoint",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "MeditationRoutine": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 101
+            },
+            "name": {
+              "type": "string",
+              "example": "10-Minute Mindfulness Meditation"
+            },
+            "type": {
+              "type": "string",
+              "example": "Mindfulness"
+            },
+            "duration": {
+              "type": "string",
+              "example": "10 minutes"
+            },
+            "instructions": {
+              "type": "string",
+              "example": "Find a comfortable seat, close your eyes, and focus on your breathing for 10 minutes."
+            }
+          }
+        },
+        "FitnessRoutine": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 202
+            },
+            "name": {
+              "type": "string",
+              "example": "Beginner Yoga Routine"
+            },
+            "workoutType": {
+              "type": "string",
+              "example": "Yoga"
+            },
+            "duration": {
+              "type": "string",
+              "example": "30 minutes"
+            },
+            "intensity": {
+              "type": "string",
+              "example": "Low"
+            },
+            "instructions": {
+              "type": "string",
+              "example": "Start with basic yoga poses, focusing on stretching and relaxation."
+            }
+          }
+        },
+        "SleepTracking": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer",
+              "example": 303
+            },
+            "totalSleep": {
+              "type": "string",
+              "example": "7 hours 30 minutes"
+            },
+            "sleepQuality": {
+              "type": "string",
+              "example": "Good"
+            },
+            "deepSleep": {
+              "type": "string",
+              "example": "2 hours"
+            },
+            "lightSleep": {
+              "type": "string",
+              "example": "5 hours"
+            }
+          }
+        },
+        "NutritionPlan": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 404
+            },
+            "dietType": {
+              "type": "string",
+              "example": "Vegan"
+            },
+            "caloricGoal": {
+              "type": "string",
+              "example": "2000 kcal"
+            },
+            "mealPlan": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "Breakfast: Avocado toast, Lunch: Quinoa salad, Dinner: Vegetable stir-fry"
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "schemas": {
+      "MeditationRoutine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 101
+          },
+          "name": {
+            "type": "string",
+            "example": "10-Minute Mindfulness Meditation"
+          },
+          "type": {
+            "type": "string",
+            "example": "Mindfulness"
+          },
+          "duration": {
+            "type": "string",
+            "example": "10 minutes"
+          },
+          "instructions": {
+            "type": "string",
+            "example": "Find a comfortable seat, close your eyes, and focus on your breathing for 10 minutes."
+          }
+        }
+      },
+      "FitnessRoutine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 202
+          },
+          "name": {
+            "type": "string",
+            "example": "Beginner Yoga Routine"
+          },
+          "workoutType": {
+            "type": "string",
+            "example": "Yoga"
+          },
+          "duration": {
+            "type": "string",
+            "example": "30 minutes"
+          },
+          "intensity": {
+            "type": "string",
+            "example": "Low"
+          },
+          "instructions": {
+            "type": "string",
+            "example": "Start with basic yoga poses, focusing on stretching and relaxation."
+          }
+        }
+      },
+      "SleepTracking": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 303
+          },
+          "totalSleep": {
+            "type": "string",
+            "example": "7 hours 30 minutes"
+          },
+          "sleepQuality": {
+            "type": "string",
+            "example": "Good"
+          },
+          "deepSleep": {
+            "type": "string",
+            "example": "2 hours"
+          },
+          "lightSleep": {
+            "type": "string",
+            "example": "5 hours"
+          }
+        }
+      },
+      "NutritionPlan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 404
+          },
+          "dietType": {
+            "type": "string",
+            "example": "Vegan"
+          },
+          "caloricGoal": {
+            "type": "string",
+            "example": "2000 kcal"
+          },
+          "mealPlan": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Breakfast: Avocado toast, Lunch: Quinoa salad, Dinner: Vegetable stir-fry"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

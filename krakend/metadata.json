@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Wellness Track",
+    "description": "Deploy Wellness Track",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
