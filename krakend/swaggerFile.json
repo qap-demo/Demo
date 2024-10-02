@@ -1,0 +1,156 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "EventFinder API",
+    "description": "The EventFinder API provides real-time event information such as concerts, festivals, conferences, and more. With powerful search and filtering capabilities, users can discover events based on location, date, and type.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@eventfinder.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://api.eventfinder.com/v1",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "/api-eventfinder/events/{eventId}": {
+      "get": {
+        "summary": "Get details of a specific event",
+        "description": "Retrieve detailed information about a specific event, including location, schedule, performers, and ticket options.",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event details returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-eventfinder/events": {
+      "get": {
+        "summary": "Get a list of upcoming events",
+        "description": "Retrieve data on upcoming events, including their locations, dates, and ticket availability.",
+        "responses": {
+          "200": {
+            "description": "List of events returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/api-eventfinder/billings": {
+      "get": {
+        "summary": "Endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1001
+          },
+          "name": {
+            "type": "string",
+            "example": "Music Festival 2024"
+          },
+          "description": {
+            "type": "string",
+            "example": "A three-day outdoor music festival featuring international artists and local bands."
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "example": "New York"
+              },
+              "venue": {
+                "type": "string",
+                "example": "Central Park"
+              }
+            }
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-06-15"
+          },
+          "time": {
+            "type": "string",
+            "format": "time",
+            "example": "18:00"
+          },
+          "ticketPrice": {
+            "type": "number",
+            "format": "float",
+            "example": 79.99
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "https://example.com/images/event-1001.jpg"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

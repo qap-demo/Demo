@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Event Finder",
+    "description": "Deploy Event Finder",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
