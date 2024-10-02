@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Artists",
+    "description": "Deploy workspace Artists",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
