@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace All Together",
+    "description": "Demo All Together 2",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
