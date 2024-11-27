@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "test-with-crys",
+    "description": "Demonstraion",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
