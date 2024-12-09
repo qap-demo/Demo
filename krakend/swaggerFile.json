@@ -1,0 +1,446 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "EcoTrack API",
+    "description": "An API for accessing environmental and ecological data such as air quality, water quality, deforestation rates, and wildlife populations. Ideal for sustainability-focused applications.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@ecotrackapi.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.2",
+    "info": {
+      "title": "EcoTrack API",
+      "description": "An API for accessing environmental and ecological data such as air quality, water quality, deforestation rates, and wildlife populations. Ideal for sustainability-focused applications.",
+      "version": "1.0.0",
+      "contact": {
+        "email": "support@ecotrackapi.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+        "description": "Internal test server"
+      }
+    ],
+    "paths": {
+      "/api-artists/artists": {
+        "post": {
+          "description": "Lets a user post a new artist",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artist"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully created a new artist"
+            },
+            "400": {
+              "$ref": "#/components/responses/400Error"
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/api-ecotrack_/environment/air-quality": {
+        "get": {
+          "summary": "Get air quality data",
+          "description": "Retrieve real-time air quality data for a specified location, including metrics such as AQI (Air Quality Index), particulate matter (PM2.5, PM10), and ozone levels.",
+          "parameters": [
+            {
+              "name": "location",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "New York"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Air quality data returned successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AirQualityData"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api-artists/artists/{username}": {
+        "get": {
+          "description": "Obtain information about an artist from his or her unique username",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully returned an artist",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "artist_name": {
+                        "type": "string"
+                      },
+                      "artist_genre": {
+                        "type": "string"
+                      },
+                      "albums_recorded": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "$ref": "#/components/responses/400Error"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AirQualityData": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "example": "New York"
+            },
+            "aqi": {
+              "type": "integer",
+              "example": 75
+            },
+            "pm25": {
+              "type": "number",
+              "format": "float",
+              "example": 12.5
+            },
+            "pm10": {
+              "type": "number",
+              "format": "float",
+              "example": 30.1
+            },
+            "ozone": {
+              "type": "number",
+              "format": "float",
+              "example": 0.03
+            }
+          }
+        },
+        "WaterQualityData": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "example": "Lake Tahoe"
+            },
+            "ph": {
+              "type": "number",
+              "format": "float",
+              "example": 7.2
+            },
+            "turbidity": {
+              "type": "number",
+              "format": "float",
+              "example": 1.5
+            },
+            "contaminants": {
+              "type": "object",
+              "properties": {
+                "lead": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 0.005
+                },
+                "mercury": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 0.001
+                }
+              }
+            }
+          }
+        },
+        "WildlifePopulationData": {
+          "type": "object",
+          "properties": {
+            "species": {
+              "type": "string",
+              "example": "African Elephant"
+            },
+            "region": {
+              "type": "string",
+              "example": "Sub-Saharan Africa"
+            },
+            "populationEstimate": {
+              "type": "integer",
+              "example": 415000
+            },
+            "status": {
+              "type": "string",
+              "example": "Endangered"
+            }
+          }
+        },
+        "Artist": {
+          "type": "object",
+          "required": [
+            "username"
+          ],
+          "properties": {
+            "artist_name": {
+              "type": "string"
+            },
+            "artist_genre": {
+              "type": "string"
+            },
+            "albums_recorded": {
+              "type": "integer"
+            },
+            "username": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "parameters": {
+        "PageLimit": {
+          "name": "limit",
+          "in": "query",
+          "description": "Limits the number of items on a page",
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "PageOffset": {
+          "name": "offset",
+          "in": "query",
+          "description": "Specifies the page number of the artists to be displayed",
+          "schema": {
+            "type": "integer"
+          }
+        }
+      },
+      "responses": {
+        "400Error": {
+          "description": "Invalid request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "schemas": {
+      "AirQualityData": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "example": "New York"
+          },
+          "aqi": {
+            "type": "integer",
+            "example": 75
+          },
+          "pm25": {
+            "type": "number",
+            "format": "float",
+            "example": 12.5
+          },
+          "pm10": {
+            "type": "number",
+            "format": "float",
+            "example": 30.1
+          },
+          "ozone": {
+            "type": "number",
+            "format": "float",
+            "example": 0.03
+          }
+        }
+      },
+      "WaterQualityData": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "example": "Lake Tahoe"
+          },
+          "ph": {
+            "type": "number",
+            "format": "float",
+            "example": 7.2
+          },
+          "turbidity": {
+            "type": "number",
+            "format": "float",
+            "example": 1.5
+          },
+          "contaminants": {
+            "type": "object",
+            "properties": {
+              "lead": {
+                "type": "number",
+                "format": "float",
+                "example": 0.005
+              },
+              "mercury": {
+                "type": "number",
+                "format": "float",
+                "example": 0.001
+              }
+            }
+          }
+        }
+      },
+      "WildlifePopulationData": {
+        "type": "object",
+        "properties": {
+          "species": {
+            "type": "string",
+            "example": "African Elephant"
+          },
+          "region": {
+            "type": "string",
+            "example": "Sub-Saharan Africa"
+          },
+          "populationEstimate": {
+            "type": "integer",
+            "example": 415000
+          },
+          "status": {
+            "type": "string",
+            "example": "Endangered"
+          }
+        }
+      },
+      "Artist": {
+        "type": "object",
+        "required": [
+          "username"
+        ],
+        "properties": {
+          "artist_name": {
+            "type": "string"
+          },
+          "artist_genre": {
+            "type": "string"
+          },
+          "albums_recorded": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "PageLimit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Limits the number of items on a page",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "PageOffset": {
+        "name": "offset",
+        "in": "query",
+        "description": "Specifies the page number of the artists to be displayed",
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "responses": {
+      "400Error": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

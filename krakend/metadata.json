@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "teste-teste",
+    "description": "dffwer",
+    "dockerRegistry": "gitLab-container-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
