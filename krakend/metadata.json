@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace agroTermos",
+    "description": "Deploy Agro Termos",
+    "dockerRegistry": "dockerHub-private-repo"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}

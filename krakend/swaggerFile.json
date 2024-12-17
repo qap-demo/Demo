@@ -1,0 +1,320 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AgroTermos",
+    "description": "Este documento apresenta as especificações e formas de uso das APIs para consumo dos serviços disponibilizados no Web Service do Agrotermos. Uma versão Web dos serviços pode ser vista em [Agrotermos Web](https://sistemas.sede.embrapa.br/agrotermos).",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "/",
+      "description": "Internal test server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "termo",
+      "description": "Consulta aos termos e/ou conceitos do Agrotermos com nome exato (idêntico)."
+    },
+    {
+      "name": "termoParcial",
+      "description": "Consulta aos termos e/ou conceitos do Agrotermos de forma parcial (não idêntica)."
+    },
+    {
+      "name": "termoById",
+      "description": "Consulta a um termo e/ou conceito específico do Agrotermos."
+    },
+    {
+      "name": "termoComRelacoes",
+      "description": "Consulta de termos e/ou conceitos e seus relacionamentos com outros termos e/ou conceitos."
+    },
+    {
+      "name": "relacoes",
+      "description": "Consulta das relações disponíveis no Agrotermos."
+    },
+    {
+      "name": "relacao",
+      "description": "Consulta a uma relação específica do Agrotermos."
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.1",
+    "info": {
+      "title": "AgroTermos",
+      "description": "Este documento apresenta as especificações e formas de uso das APIs para consumo dos serviços disponibilizados no Web Service do Agrotermos. Uma versão Web dos serviços pode ser vista em [Agrotermos Web](https://sistemas.sede.embrapa.br/agrotermos).",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "/",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "/",
+        "description": "Internal test server"
+      }
+    ],
+    "tags": [
+      {
+        "name": "termo",
+        "description": "Consulta aos termos e/ou conceitos do Agrotermos com nome exato (idêntico)."
+      },
+      {
+        "name": "termoParcial",
+        "description": "Consulta aos termos e/ou conceitos do Agrotermos de forma parcial (não idêntica)."
+      },
+      {
+        "name": "termoById",
+        "description": "Consulta a um termo e/ou conceito específico do Agrotermos."
+      },
+      {
+        "name": "termoComRelacoes",
+        "description": "Consulta de termos e/ou conceitos e seus relacionamentos com outros termos e/ou conceitos."
+      },
+      {
+        "name": "relacoes",
+        "description": "Consulta das relações disponíveis no Agrotermos."
+      },
+      {
+        "name": "relacao",
+        "description": "Consulta a uma relação específica do Agrotermos."
+      }
+    ],
+    "paths": {
+      "/agrotermos/billings": {
+        "get": {
+          "summary": "Endpoint",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": []
+        }
+      },
+      "/agrotermos/termo": {
+        "get": {
+          "tags": [
+            "termo"
+          ],
+          "summary": "Consulta de termos e/ou conceitos pelo seu nome (string).",
+          "description": "Retorna o termo e/ou conceito consultado caso exista.",
+          "parameters": [
+            {
+              "name": "label",
+              "in": "query",
+              "description": "Nome do termo ou conceito para consulta.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Consuta com sucesso.",
+              "content": {}
+            },
+            "404": {
+              "description": "Erro na consulta.",
+              "content": {}
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited"
+        }
+      },
+      "/agrotermos/termoParcial": {
+        "get": {
+          "tags": [
+            "termoParcial"
+          ],
+          "summary": "Consulta de termos e/ou conceitos de forma parcial contendo partes do seu nome (string).",
+          "description": "Retorna os termos e/ou conceitos que contém a string/nome de busca consultada(o).",
+          "parameters": [
+            {
+              "name": "label",
+              "in": "query",
+              "description": "String/Nome do termo ou conceito para consulta.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Consuta com sucesso.",
+              "content": {}
+            },
+            "404": {
+              "description": "Erro na consulta.",
+              "content": {}
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited"
+        }
+      },
+      "/agrotermos/termoById": {
+        "get": {
+          "tags": [
+            "termoById"
+          ],
+          "summary": "Consulta de termos e/ou conceitos pelo identificador (ID) único",
+          "description": "Retorna os termos e/ou conceitos pelo identificador (ID) pesquisado.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "description": "Identificador do termo ou conceito para consulta.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Consuta com sucesso.",
+              "content": {}
+            },
+            "404": {
+              "description": "Erro na consulta.",
+              "content": {}
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited"
+        }
+      },
+      "/agrotermos/termoComRelacoes": {
+        "get": {
+          "tags": [
+            "termoComRelacoes"
+          ],
+          "summary": "Consulta de termos e/ou conceitos e seus relacionamentos com outros termos e/ou conceitos.",
+          "description": "Retorna todos os relacionamentos do termo e/ou conceito consultado.",
+          "parameters": [
+            {
+              "name": "label",
+              "in": "query",
+              "description": "String do termo ou conceito para consulta.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Consuta com sucesso.",
+              "content": {}
+            },
+            "404": {
+              "description": "Erro na consulta.",
+              "content": {}
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited"
+        }
+      },
+      "/agrotermos/relacoes": {
+        "get": {
+          "tags": [
+            "relacoes"
+          ],
+          "summary": "Consulta das relações disponíveis no Agrotermos.",
+          "description": "Retorna a lista de relações do Agrotermos.",
+          "responses": {
+            "200": {
+              "description": "Consuta com sucesso.",
+              "content": {}
+            },
+            "404": {
+              "description": "Erro na consulta.",
+              "content": {}
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited",
+          "parameters": []
+        }
+      },
+      "/agrotermos/relacao": {
+        "get": {
+          "tags": [
+            "relacao"
+          ],
+          "summary": "Consulta a uma relação específica do Agrotermos pelo seu nome (string).",
+          "description": "Retorna relação consultada caso exista.",
+          "parameters": [
+            {
+              "name": "label",
+              "in": "query",
+              "description": "Nome da relação para consulta.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Consuta com sucesso.",
+              "content": {}
+            },
+            "404": {
+              "description": "Erro na consulta.",
+              "content": {}
+            }
+          },
+          "x-auth-type": "Application & Application User",
+          "x-throttling-tier": "Unlimited"
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "x-original-swagger-version": "2.0",
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0",
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
