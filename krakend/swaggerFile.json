@@ -1,0 +1,254 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "EcoTrack API",
+    "description": "An API for accessing environmental and ecological data such as air quality, water quality, deforestation rates, and wildlife populations. Ideal for sustainability-focused applications.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@ecotrackapi.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "/api-ecotrack/users": {
+      "get": {
+        "summary": "Endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/api-ecotrack/environment/water-quality": {
+      "get": {
+        "summary": "Get water quality data",
+        "description": "Retrieve real-time water quality data for lakes, rivers, and coastal regions, including metrics such as pH levels, turbidity, and contaminant concentrations.",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Lake Tahoe"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Water quality data returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WaterQualityData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-ecotrack/environment/air-quality": {
+      "get": {
+        "summary": "Get air quality data",
+        "description": "Retrieve real-time air quality data for a specified location, including metrics such as AQI (Air Quality Index), particulate matter (PM2.5, PM10), and ozone levels.",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "New York"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Air quality data returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AirQualityData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-ecotrack/wildlife/population": {
+      "get": {
+        "summary": "Get wildlife population data",
+        "description": "Retrieve data on wildlife populations in a specific region, including endangered species tracking and population changes over time.",
+        "parameters": [
+          {
+            "name": "species",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "African Elephant"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Sub-Saharan Africa"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wildlife population data returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WildlifePopulationData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-ecotrack/billing": {
+      "get": {
+        "summary": "Endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AirQualityData": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "example": "New York"
+          },
+          "aqi": {
+            "type": "integer",
+            "example": 75
+          },
+          "pm25": {
+            "type": "number",
+            "format": "float",
+            "example": 12.5
+          },
+          "pm10": {
+            "type": "number",
+            "format": "float",
+            "example": 30.1
+          },
+          "ozone": {
+            "type": "number",
+            "format": "float",
+            "example": 0.03
+          }
+        }
+      },
+      "WaterQualityData": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "example": "Lake Tahoe"
+          },
+          "ph": {
+            "type": "number",
+            "format": "float",
+            "example": 7.2
+          },
+          "turbidity": {
+            "type": "number",
+            "format": "float",
+            "example": 1.5
+          },
+          "contaminants": {
+            "type": "object",
+            "properties": {
+              "lead": {
+                "type": "number",
+                "format": "float",
+                "example": 0.005
+              },
+              "mercury": {
+                "type": "number",
+                "format": "float",
+                "example": 0.001
+              }
+            }
+          }
+        }
+      },
+      "WildlifePopulationData": {
+        "type": "object",
+        "properties": {
+          "species": {
+            "type": "string",
+            "example": "African Elephant"
+          },
+          "region": {
+            "type": "string",
+            "example": "Sub-Saharan Africa"
+          },
+          "populationEstimate": {
+            "type": "integer",
+            "example": 415000
+          },
+          "status": {
+            "type": "string",
+            "example": "Endangered"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
