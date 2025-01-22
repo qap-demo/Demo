@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "BookHub API",
+    "description": "A powerful API for accessing a comprehensive database of books, authors, genres, and reviews. Ideal for building digital libraries, book recommendation systems, or e-commerce platforms.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@bookhubapi.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "/",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "/api-bookhub/books": {
+      "get": {
+        "summary": "Get a list of books",
+        "description": "Retrieve a list of books based on filters such as title, author, genre, or publication date.",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "The Great Gatsby"
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "F. Scott Fitzgerald"
+            }
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Classic"
+            }
+          },
+          {
+            "name": "publicationDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "1925-04-10"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of books returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Book"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-bookhub/books/{bookId}": {
+      "get": {
+        "summary": "Get book details",
+        "description": "Retrieve detailed information about a specific book, including summary, genre, publication date, and author details.",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book details returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-bookhub/billing": {
+      "get": {
+        "summary": "Endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123
+          },
+          "title": {
+            "type": "string",
+            "example": "The Great Gatsby"
+          },
+          "author": {
+            "type": "string",
+            "example": "F. Scott Fitzgerald"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Classic"
+          },
+          "publicationDate": {
+            "type": "string",
+            "format": "date",
+            "example": "1925-04-10"
+          },
+          "summary": {
+            "type": "string",
+            "example": "A novel set in the Roaring Twenties, following the mysterious millionaire Jay Gatsby and his obsession with Daisy Buchanan."
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "https://example.com/images/great-gatsby.jpg"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
