@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Book hub",
+    "description": "Deploy book hub",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
