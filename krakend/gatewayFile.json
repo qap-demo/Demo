@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "name": "API-Pokemon",
+  "timeout": "5000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "no-op",
+  "port": "3890",
+  "endpoints": []
+}
