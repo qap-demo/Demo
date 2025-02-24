@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API-Pokemon",
+    "description": "Data about Pokémon.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://qap-workspace-pipeline-test-qfm4nbgbkq-uc.a.run.app",
+      "description": "Internal test server"
+    }
+  ],
+  "paths": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API-Pokemon",
+      "description": "Data about Pokémon.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "/",
+        "description": "Main (production) server"
+      },
+      {
+        "url": "/",
+        "description": "Internal test server"
+      }
+    ],
+    "paths": {
+      "openapi": "3.0.0",
+      "info": {
+        "title": "API-Pokemon",
+        "description": "Data about Pokémon.",
+        "version": "1.0.0"
+      },
+      "servers": [
+        {
+          "url": "/",
+          "description": "Main (production) server"
+        },
+        {
+          "url": "/",
+          "description": "Internal test server"
+        }
+      ],
+      "paths": {
+        "/api-pokemon/pokemon/ditto": {
+          "get": {
+            "summary": "Get data from Pokemon API",
+            "description": "Fetch data using the Pokemon API API.",
+            "responses": {
+              "200": {
+                "description": "Response from Pokemon API API",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": []
+          }
+        }
+      },
+      "components": {
+        "securitySchemes": {
+          "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          }
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ]
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
