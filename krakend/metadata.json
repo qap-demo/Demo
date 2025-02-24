@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "api-pokemon-workspace",
+    "description": "deploy API",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
