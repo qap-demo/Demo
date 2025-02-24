@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "name": "Workspace Swagger",
+    "description": "Test deploy",
+    "dockerRegistry": "gitHub-package-registry"
+  },
+  "environment": {
+    "repository": "Demo.git",
+    "gitUsername": "qap-demo"
+  },
+  "variables": []
+}
